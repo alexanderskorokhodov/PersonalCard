@@ -20,6 +20,27 @@
 - форму связи через Telegram;
 - карту с географией проектов.
 
+## Скриншоты
+
+Ниже быстрый визуальный обзор того, как выглядит сайт:
+
+### Desktop
+
+![Главная страница](docs/screenshots/home-preview.png)
+
+### Mobile
+
+![Главная страница на мобильном](docs/screenshots/home-mobile-preview.png)
+
+Полный набор скриншотов:
+
+- [Главная, desktop](docs/screenshots/home-preview.png)
+- [Проекты, desktop](docs/screenshots/projects-preview.png)
+- [Кейсы, desktop](docs/screenshots/cases-preview.png)
+- [Обо мне, desktop](docs/screenshots/about-preview.png)
+- [Главная, mobile](docs/screenshots/home-mobile-preview.png)
+- [Обо мне, mobile](docs/screenshots/about-mobile-preview.png)
+
 ## Быстрый старт
 
 Требования:
