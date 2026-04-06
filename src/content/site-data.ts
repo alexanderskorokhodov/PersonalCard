@@ -10,6 +10,9 @@ type SiteContent = {
     telegramUsername: string
     footerLabel: string
     footerNote: string
+    footerCreditLabel: string
+    footerSourceLabel: string
+    footerSourceHref: string
   }
   aboutLinks: ActionLink[]
   navigation: Record<'home' | 'projects' | 'cases' | 'about', string>
@@ -95,6 +98,9 @@ const siteContentByLocale: Record<Locale, SiteContent> = {
       footerLabel: 'Alexander Skorokhodov © 2026',
       footerNote:
         'Self-employed in Russia. Available for international client work, including Kazakhstan.',
+      footerCreditLabel: 'Built and maintained by Alexander Skorokhodov',
+      footerSourceLabel: 'Source code on GitHub',
+      footerSourceHref: 'https://github.com/alexanderskorokhodov/PersonalCard',
     },
     aboutLinks: aboutLinksByLocale.en,
     navigation: {
@@ -128,6 +134,9 @@ const siteContentByLocale: Record<Locale, SiteContent> = {
       footerLabel: 'Александр Скороходов © 2026',
       footerNote:
         'Самозанятый в России. Доступен для работы с международными клиентами, включая Казахстан.',
+      footerCreditLabel: 'Built and maintained by Alexander Skorokhodov',
+      footerSourceLabel: 'Source code on GitHub',
+      footerSourceHref: 'https://github.com/alexanderskorokhodov/PersonalCard',
     },
     aboutLinks: aboutLinksByLocale.ru,
     navigation: {

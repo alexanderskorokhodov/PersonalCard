@@ -15,7 +15,7 @@ export function SiteFooter({ caseWidth = false }: SiteFooterProps) {
         caseWidth ? 'page-column-case' : 'page-column',
       )}
     >
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col items-start gap-2">
         <span>{profile.footerLabel}</span>
         {profile.email ? (
           <a href={`mailto:${profile.email}`} className="hover:text-[var(--text-strong)]">
@@ -24,6 +24,19 @@ export function SiteFooter({ caseWidth = false }: SiteFooterProps) {
         ) : (
           <span>{profile.footerNote}</span>
         )}
+      </div>
+      <div className="mt-6 flex justify-center text-center">
+        <p className="leading-relaxed">
+          <span>{profile.footerCreditLabel} · </span>
+          <a
+            href={profile.footerSourceHref}
+            target="_blank"
+            rel="noreferrer"
+            className="underline-offset-4 transition hover:text-[var(--text-strong)] hover:underline"
+          >
+            {profile.footerSourceLabel}
+          </a>
+        </p>
       </div>
     </footer>
   )
