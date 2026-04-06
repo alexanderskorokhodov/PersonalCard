@@ -5,17 +5,19 @@ import { ContentCard } from '@/components/ui/ContentCard'
 import { TrustedOrganizationsSection } from '@/components/ui/TrustedOrganizationsSection'
 import { preloadRoute } from '@/app/routes'
 import { usePortfolioContent } from '@/content/portfolio'
+import { useSiteContent } from '@/content/site-data'
 import { useLocale } from '@/lib/locale-context'
 
 function HomePage() {
   const { locale } = useLocale()
   const { projectsPage } = usePortfolioContent()
+  const { profile } = useSiteContent()
 
   return (
     <>
       <Helmet>
         <title>
-          {locale === 'ru' ? 'Александр Скороходов | Главная' : 'Alexander Skorokhodov | Home'}
+          {profile.name} | {locale === 'ru' ? 'Главная' : 'Home'}
         </title>
         <meta name="description" content={projectsPage.metaDescription} />
       </Helmet>

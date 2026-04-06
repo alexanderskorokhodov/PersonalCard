@@ -25,7 +25,7 @@ function ProjectLocationsMapFallback() {
 
 function AboutPage() {
   const { aboutPage } = usePortfolioContent()
-  const { aboutLinks } = useSiteContent()
+  const { aboutLinks, profile } = useSiteContent()
 
   return (
     <>
@@ -144,6 +144,7 @@ function AboutPage() {
 
           <div className="grid gap-5">
             <ContactForm
+              telegramUsername={profile.telegramUsername}
               nameLabel={aboutPage.formNameLabel}
               namePlaceholder={aboutPage.formNamePlaceholder}
               contactLabel={aboutPage.formContactLabel}

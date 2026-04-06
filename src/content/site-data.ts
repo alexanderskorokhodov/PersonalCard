@@ -7,6 +7,7 @@ type SiteContent = {
     role: string
     avatar: string
     email: string
+    telegramUsername: string
     footerLabel: string
     footerNote: string
   }
@@ -90,6 +91,7 @@ const siteContentByLocale: Record<Locale, SiteContent> = {
       role: 'Technical development. Software and automation.',
       avatar: '/square.jpeg',
       email: '',
+      telegramUsername: 'alexanderbtw',
       footerLabel: 'Alexander Skorokhodov © 2026',
       footerNote:
         'Self-employed in Russia. Available for international client work, including Kazakhstan.',
@@ -122,6 +124,7 @@ const siteContentByLocale: Record<Locale, SiteContent> = {
       role: 'Техническая разработка. ПО и автоматизация.',
       avatar: '/square.jpeg',
       email: '',
+      telegramUsername: 'alexanderbtw',
       footerLabel: 'Александр Скороходов © 2026',
       footerNote:
         'Самозанятый в России. Доступен для работы с международными клиентами, включая Казахстан.',
@@ -150,7 +153,11 @@ const siteContentByLocale: Record<Locale, SiteContent> = {
   },
 }
 
+export function getSiteContent(locale: Locale) {
+  return siteContentByLocale[locale]
+}
+
 export function useSiteContent() {
   const { locale } = useLocale()
-  return siteContentByLocale[locale]
+  return getSiteContent(locale)
 }

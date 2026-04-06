@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { FormEvent } from 'react'
 
 type ContactFormProps = {
+  telegramUsername: string
   nameLabel: string
   namePlaceholder: string
   contactLabel: string
@@ -14,9 +15,8 @@ type ContactFormProps = {
   successLabel: string
 }
 
-const TELEGRAM_USERNAME = 'alexanderbtw'
-
 export function ContactForm({
+  telegramUsername,
   nameLabel,
   namePlaceholder,
   contactLabel,
@@ -37,6 +37,12 @@ export function ContactForm({
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+
+    const normalizedTelegramUsername = telegramUsername.trim().replace(/^@/, '')
+
+    if (!normalizedTelegramUsername) {
+      return
+    }
 
     const name = form.name.trim() || '-'
     const task = form.context.trim() || '-'
@@ -72,7 +78,11 @@ export function ContactForm({
     ]
 
     const text = encodeURIComponent(lines.join('\n'))
-    window.open(`https://t.me/${TELEGRAM_USERNAME}?text=${text}`, '_blank', 'noopener,noreferrer')
+    window.open(
+      `https://t.me/${normalizedTelegramUsername}?text=${text}`,
+      '_blank',
+      'noopener,noreferrer',
+    )
   }
 
   return (

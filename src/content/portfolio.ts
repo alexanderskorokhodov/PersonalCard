@@ -1,6 +1,7 @@
 import heroImage from '@/assets/hero.png'
 import { useLocale, type Locale } from '@/lib/locale-context'
 import type { ActionLink, CaseStudy, CaseBlock, CaseMetric, MediaAsset, ShowcaseItem } from './types'
+import { getSiteContent } from './site-data'
 
 type Localized<T> = Record<Locale, T>
 
@@ -2763,11 +2764,10 @@ export function getDetailStudy(kind: 'project' | 'case', slug: string, locale: L
 }
 
 function getProjectsPage(locale: Locale): ProjectsPageContent {
+  const profileName = getSiteContent(locale).profile.name
+
   return {
-    metaTitle:
-      locale === 'ru'
-        ? 'Александр Скороходов | Проекты'
-        : 'Alexander Skorokhodov | Projects',
+    metaTitle: `${profileName} | ${locale === 'ru' ? 'Проекты' : 'Projects'}`,
     metaDescription:
       locale === 'ru'
         ? 'Разработка ПО под ключ, сопровождение и обслуживание для бизнеса.'
@@ -2938,11 +2938,10 @@ function getProjectsPage(locale: Locale): ProjectsPageContent {
 }
 
 function getCasesPage(locale: Locale): CasesPageContent {
+  const profileName = getSiteContent(locale).profile.name
+
   return {
-    metaTitle:
-      locale === 'ru'
-        ? 'Александр Скороходов | Кейсы'
-        : 'Alexander Skorokhodov | Cases',
+    metaTitle: `${profileName} | ${locale === 'ru' ? 'Кейсы' : 'Cases'}`,
     metaDescription:
       locale === 'ru'
         ? 'Каталог реализованных задач: AI, финтех, Telegram, automation, web и marketplace кейсы.'
@@ -2965,11 +2964,10 @@ function getCasesPage(locale: Locale): CasesPageContent {
 }
 
 function getAboutPage(locale: Locale): AboutPageContent {
+  const profileName = getSiteContent(locale).profile.name
+
   return {
-    metaTitle:
-      locale === 'ru'
-        ? 'Александр Скороходов | Обо мне'
-        : 'Alexander Skorokhodov | About',
+    metaTitle: `${profileName} | ${locale === 'ru' ? 'Обо мне' : 'About'}`,
     metaDescription:
       locale === 'ru'
         ? 'Бэкграунд, достижения, география опыта, домены, процесс работы и контакты.'
