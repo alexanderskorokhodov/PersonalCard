@@ -43,3 +43,14 @@ export function ArrowLeftIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   )
 }
+
+export function CloseIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M18.187 4.398L19.602 5.813L13.415 12L19.602 18.187L18.187 19.602L12 13.415L5.813 19.602L4.398 18.187L10.585 12L4.398 5.813L5.813 4.398L12 10.585L18.187 4.398Z"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}

@@ -49,7 +49,7 @@ export function LocaleToggle({ className }: LocaleToggleProps) {
               })
             }}
             className={cn(
-              'flex h-9 w-9 items-center justify-center rounded-[12px] text-[18px] leading-none transition-all duration-200',
+              'flex h-9 w-9 cursor-pointer items-center justify-center rounded-[12px] text-[18px] leading-none transition-all duration-200',
               isActive
                 ? 'border border-black/10 bg-white text-[var(--text-strong)] shadow-[var(--shadow-tab)]'
                 : 'text-[var(--text-soft)] hover:text-[var(--text-strong)]',

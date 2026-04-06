@@ -10,6 +10,7 @@ import ReactMap, {
   type MapRef,
 } from 'react-map-gl/maplibre'
 import 'maplibre-gl/dist/maplibre-gl.css'
+import { CloseIcon } from '@/components/icons'
 import { projectLocations } from '@/content/project-locations'
 import { useLocale, type Locale } from '@/lib/locale-context'
 
@@ -326,6 +327,7 @@ export function ProjectLocationsMap() {
     projects.map((project) => `${project.city}:${project.country}`),
   ).size
   const modalMapRef = useRef<MapRef | null>(null)
+  const projectItemRefs = useRef<Record<string, HTMLDivElement | null>>({})
   const [isFullScreen, setIsFullScreen] = useState(false)
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(projects[0]?.id ?? null)
   const selectedProject =
@@ -352,6 +354,19 @@ export function ProjectLocationsMap() {
       window.removeEventListener('keydown', handleEscape)
     }
   }, [isFullScreen])
+
+  useEffect(() => {
+    if (!isFullScreen || !selectedProjectId) {
+      return
+    }
+
+    const activeProjectNode = projectItemRefs.current[selectedProjectId]
+
+    activeProjectNode?.scrollIntoView({
+      block: 'nearest',
+      behavior: 'smooth',
+    })
+  }, [isFullScreen, selectedProjectId])
 
   function focusProject(project: ProjectPoint) {
     setSelectedProjectId(project.id)
@@ -442,7 +457,7 @@ export function ProjectLocationsMap() {
               padding={{ top: 120, right: 48, bottom: 260, left: 48 }}
             />
 
-            <div className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between gap-4 p-4 sm:p-6">
+            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex items-start justify-between gap-4 p-4 sm:p-6">
               <div className="max-w-[36rem] rounded-[24px] border border-white/70 bg-white/92 px-4 py-4 backdrop-blur">
                 <p className="eyebrow">{copy.summary}</p>
                 <p className="mt-2 text-[15px] font-medium text-[var(--text-strong)]">
@@ -456,73 +471,89 @@ export function ProjectLocationsMap() {
               <button
                 type="button"
                 onClick={() => setIsFullScreen(false)}
-                className="pointer-events-auto shrink-0 rounded-full border border-white/65 bg-white/92 px-4 py-2 text-[13px] font-medium text-[var(--text-strong)] backdrop-blur transition-transform duration-200 hover:-translate-y-0.5"
+                aria-label={copy.closeLabel}
+                className="pointer-events-auto inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/65 bg-white/92 text-[var(--text-strong)] backdrop-blur transition-colors duration-200"
               >
-                {copy.closeLabel}
+                <CloseIcon className="h-4 w-4 shrink-0" />
               </button>
             </div>
 
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 p-4 sm:p-6">
-              <div className="pointer-events-auto ml-auto w-full max-w-[26rem] rounded-[24px] border border-white/70 bg-white/94 p-4 shadow-[var(--shadow-soft)] backdrop-blur">
-                <p className="eyebrow">{copy.summary}</p>
-                {selectedProject ? (
-                  <div className="mt-3 rounded-[18px] bg-[var(--surface-soft)] px-4 py-4">
-                    <p className="text-[14px] font-medium text-[var(--text-strong)]">
-                      {selectedProject.title}
-                    </p>
-                    <p className="mt-1 text-[12px] leading-5 text-[var(--text-muted)]">
-                      {selectedProject.city}, {selectedProject.country}
-                    </p>
-                    <p className="mt-1 text-[12px] leading-5 text-[var(--text-muted)]">
-                      {copy.yearLabel}: {selectedProject.year}
-                    </p>
-                    <p className="mt-1 text-[12px] leading-5 text-[var(--text-muted)]">
-                      {copy.taskLabel}: {selectedProject.taskType}
-                    </p>
-                    {selectedProject.href ? (
-                      <Link
-                        to={selectedProject.href}
-                        className="mt-3 inline-flex text-[13px] font-medium text-[var(--text-link)] transition hover:text-[var(--text-link-hover)]"
-                      >
-                        {copy.detailLabel}
-                      </Link>
-                    ) : null}
-                  </div>
-                ) : null}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 p-4 sm:inset-y-0 sm:left-auto sm:right-0 sm:flex sm:w-full sm:max-w-[28rem] sm:items-stretch sm:p-6">
+              <div className="pointer-events-auto ml-auto flex w-full max-w-[28rem] flex-col overflow-hidden rounded-[24px] border border-white/70 bg-white/94 p-4 shadow-[var(--shadow-soft)] backdrop-blur max-sm:max-h-[min(32rem,62vh)] sm:h-full">
+                <div className="shrink-0 border-b border-black/6 pb-3">
+                  <p className="eyebrow">{copy.summary}</p>
+                  <p className="mt-2 text-[13px] leading-5 text-[var(--text-muted)]">
+                    {projects.length} {copy.countLabel} / {uniqueCitiesCount} {copy.cityLabel}
+                  </p>
+                </div>
 
-                <div className="mt-3 space-y-2">
+                <div className="mt-3 flex-1 space-y-2 overflow-y-auto pr-1">
                   {projects.map((project) => {
                     const isActive = selectedProject?.id === project.id
 
                     return (
-                      <button
+                      <div
                         key={project.id}
-                        type="button"
-                        onClick={() => focusProject(project)}
-                        className={`flex w-full items-center justify-between rounded-[18px] px-3 py-3 text-left transition-colors duration-200 ${
+                        ref={(node) => {
+                          projectItemRefs.current[project.id] = node
+                        }}
+                        className={`rounded-[18px] border px-3 py-3 transition-[background-color,border-color,box-shadow,transform] duration-300 ${
                           isActive
-                            ? 'bg-[var(--text-strong)] text-white'
-                            : 'bg-[var(--surface-soft)] text-[var(--text-default)] hover:bg-[var(--surface-muted)]'
+                            ? 'border-black/5 bg-[var(--text-strong)] text-white'
+                            : 'border-transparent bg-[var(--surface-soft)] text-[var(--text-default)] hover:border-black/6 hover:bg-[var(--surface-muted)]'
                         }`}
                       >
-                        <span className="min-w-0 pr-4">
-                          <span className="block text-[14px] font-medium">{project.title}</span>
+                        <button
+                          type="button"
+                          onClick={() => focusProject(project)}
+                          aria-expanded={isActive}
+                          className="flex w-full items-start justify-between gap-4 text-left"
+                        >
+                          <span className="min-w-0 flex-1">
+                            <span className="block text-[14px] font-medium">{project.title}</span>
+                            <span
+                              className={`mt-1 block text-[12px] ${
+                                isActive ? 'text-white/72' : 'text-[var(--text-soft)]'
+                              }`}
+                            >
+                              {project.year} · {project.taskType}
+                            </span>
+                          </span>
                           <span
-                            className={`block text-[12px] ${
-                              isActive ? 'text-white/70' : 'text-[var(--text-soft)]'
+                            className={`shrink-0 text-[12px] ${
+                              isActive ? 'text-white/72' : 'text-[var(--text-soft)]'
                             }`}
                           >
-                            {project.year} · {project.taskType}
+                            {project.city}
                           </span>
-                        </span>
-                        <span
-                          className={`shrink-0 text-[12px] ${
-                            isActive ? 'text-white/70' : 'text-[var(--text-soft)]'
+                        </button>
+
+                        <div
+                          className={`overflow-hidden transition-[max-height,opacity,margin-top] duration-300 ${
+                            isActive ? 'mt-3 max-h-64 opacity-100' : 'max-h-0 opacity-0'
                           }`}
                         >
-                          {project.city}
-                        </span>
-                      </button>
+                          <div className={`border-t pt-3 ${isActive ? 'border-white/14' : 'border-black/6'}`}>
+                            <p className="text-[12px] leading-5 text-white/72">
+                              {project.city}, {project.country}
+                            </p>
+                            <p className="mt-1 text-[12px] leading-5 text-white/72">
+                              {copy.yearLabel}: {project.year}
+                            </p>
+                            <p className="mt-1 text-[12px] leading-5 text-white/72">
+                              {copy.taskLabel}: {project.taskType}
+                            </p>
+                            {project.href ? (
+                              <Link
+                                to={project.href}
+                                className="mt-3 inline-flex text-[13px] font-medium text-white transition hover:text-white/78"
+                              >
+                                {copy.detailLabel}
+                              </Link>
+                            ) : null}
+                          </div>
+                        </div>
+                      </div>
                     )
                   })}
                 </div>
