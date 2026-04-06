@@ -25,14 +25,14 @@ export function SiteFooter({ caseWidth = false }: SiteFooterProps) {
           <span>{profile.footerNote}</span>
         )}
       </div>
-      <div className="mt-6 flex justify-center text-center">
+      <div className="mt-6 w-full text-left text-[var(--text-soft)]">
         <p className="leading-relaxed">
           <span>{profile.footerCreditLabel} · </span>
           <a
             href={profile.footerSourceHref}
             target="_blank"
             rel="noreferrer"
-            className="underline-offset-4 transition hover:text-[var(--text-strong)] hover:underline"
+            className="underline-offset-4 transition hover:text-[var(--text-default)] hover:underline"
           >
             {profile.footerSourceLabel}
           </a>
