@@ -1,0 +1,53 @@
+:root {
+  --surface-canvas: #ffffff;
+  --surface-muted: #f2f2f1;
+  --surface-soft: #f5f4fa;
+  --surface-plain: #fbfbf8;
+  --surface-logo: #f6f6f2;
+  --surface-logo-hover: #ecece7;
+  --surface-elevated: #ffffff;
+  --surface-overlay: rgba(255, 255, 255, 0.92);
+  --border-subtle: #e5e5e5;
+  --border-strong: rgba(12, 12, 12, 0.14);
+  --text-strong: #0c0c0c;
+  --text-default: #1c1c1c;
+  --text-muted: #333333;
+  --text-soft: rgba(51, 51, 51, 0.54);
+  --text-placeholder: rgba(51, 51, 51, 0.34);
+  --text-graphite: #5a5a56;
+  --text-graphite-strong: #2b2b28;
+  --text-link: #0079ca;
+  --text-link-hover: #005cad;
+  --accent-gold: #e2b719;
+  --accent-warm: #f4e72a;
+  --shadow-soft: 0 14px 40px rgba(14, 16, 21, 0.06);
+  --shadow-tab: 0 3px 6px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 16px 42px rgba(18, 18, 18, 0.08);
+  --radius-pill: 16px;
+  --radius-card: 24px;
+  --radius-frame: 28px;
+  --radius-image: 32px;
+  --page-max-profile: 620px;
+  --page-max-case: 720px;
+  --page-max-wide: 1120px;
+  --page-max-metrics: 980px;
+  --space-page-top: 90px;
+  --space-page-bottom: 32px;
+  --space-stack-lg: 64px;
+  --space-stack-md: 48px;
+  --space-stack-sm: 24px;
+  --space-copy: 18px;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@media (max-width: 809px) {
+  :root {
+    --space-page-top: 56px;
+    --space-stack-lg: 42px;
+    --space-stack-md: 32px;
+    --space-stack-sm: 18px;
+    --radius-frame: 22px;
+    --radius-image: 24px;
+  }
+}
