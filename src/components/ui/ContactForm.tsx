@@ -35,6 +35,7 @@ export function ContactForm({
     timeline: '',
   })
   const [contextMinHeight, setContextMinHeight] = useState<number | null>(null)
+  const isFormComplete = Object.values(form).every((value) => value.trim().length > 0)
 
   useLayoutEffect(() => {
     const field = contextFieldRef.current
@@ -74,7 +75,7 @@ export function ContactForm({
 
     const normalizedTelegramUsername = telegramUsername.trim().replace(/^@/, '')
 
-    if (!normalizedTelegramUsername) {
+    if (!normalizedTelegramUsername || !isFormComplete) {
       return
     }
 
@@ -179,7 +180,8 @@ export function ContactForm({
       <div className="mt-5 flex justify-end">
         <button
           type="submit"
-          className="rounded-full border border-black/10 bg-[var(--text-strong)] px-4 py-2 text-[13px] font-medium text-white transition-transform duration-200 hover:-translate-y-0.5"
+          disabled={!isFormComplete}
+          className="rounded-full border border-black/10 bg-[var(--text-strong)] px-4 py-2 text-[13px] font-medium text-white transition duration-200 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0"
         >
           {submitLabel}
         </button>
