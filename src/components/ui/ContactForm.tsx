@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
+import { useLocale } from '@/lib/locale-context'
 
 type ContactFormProps = {
   telegramUsername: string
@@ -26,6 +27,7 @@ export function ContactForm({
   timelinePlaceholder,
   submitLabel,
 }: ContactFormProps) {
+  const { locale } = useLocale()
   const contextFieldRef = useRef<HTMLTextAreaElement>(null)
   const contextPlaceholderMeasureRef = useRef<HTMLDivElement>(null)
   const [form, setForm] = useState({
@@ -84,33 +86,36 @@ export function ContactForm({
     const contact = form.contact.trim() || '-'
     const deadline = form.timeline.trim() || '-'
 
-    const lines = [
-      `Здравствуйте! Меня зовут ${name}.`,
-      '',
-      'Обращаюсь по задаче:',
-      task,
-      '',
-      'Контакт для связи:',
-      contact,
-      '',
-      'По срокам / формату:',
-      deadline,
-      '',
-      'Буду рад обсудить детали.',
-      '',
-      `Hello! My name is ${name}.`,
-      '',
-      'I am reaching out regarding the task:',
-      task,
-      '',
-      'Contact for communication:',
-      contact,
-      '',
-      'Regarding timeline / format:',
-      deadline,
-      '',
-      'I would be glad to discuss the details.',
-    ]
+    const lines =
+      locale === 'ru'
+        ? [
+            `Здравствуйте! Меня зовут ${name}.`,
+            '',
+            'Обращаюсь по задаче:',
+            task,
+            '',
+            'Контакт для связи:',
+            contact,
+            '',
+            'По срокам / формату:',
+            deadline,
+            '',
+            'Буду рад обсудить детали.',
+          ]
+        : [
+            `Hello! My name is ${name}.`,
+            '',
+            'I am reaching out regarding the task:',
+            task,
+            '',
+            'Contact for communication:',
+            contact,
+            '',
+            'Regarding timeline / format:',
+            deadline,
+            '',
+            'I would be glad to discuss the details.',
+          ]
 
     const text = encodeURIComponent(lines.join('\n'))
     window.open(
