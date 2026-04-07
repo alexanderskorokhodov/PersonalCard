@@ -44,7 +44,7 @@ function LabsPage() {
             <button
               type="button"
               onClick={() => setActiveFilter('all')}
-              className={`rounded-full px-4 py-2 text-[13px] font-medium transition-colors duration-200 ${
+              className={`rounded-full px-4 py-2 text-left text-[13px] font-medium transition-colors duration-200 ${
                 activeFilter === 'all'
                   ? 'bg-[var(--text-strong)] text-white'
                   : 'bg-[var(--surface-muted)] text-[var(--text-muted)] hover:text-[var(--text-strong)]'
@@ -58,7 +58,7 @@ function LabsPage() {
                 key={filter.id}
                 type="button"
                 onClick={() => setActiveFilter(filter.id)}
-                className={`rounded-full px-4 py-2 text-[13px] font-medium transition-colors duration-200 ${
+                className={`rounded-full px-4 py-2 text-left text-[13px] font-medium transition-colors duration-200 ${
                   activeFilter === filter.id
                     ? 'bg-[var(--text-strong)] text-white'
                     : 'bg-[var(--surface-muted)] text-[var(--text-muted)] hover:text-[var(--text-strong)]'

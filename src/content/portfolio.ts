@@ -112,7 +112,6 @@ type AboutPageContent = {
   formTimelinePlaceholder: string
   formSubmitLabel: string
   formTelegramLabel: string
-  formSuccessLabel: string
 }
 
 type PortfolioContent = {
@@ -2901,7 +2900,7 @@ function getProjectsPage(locale: Locale): ProjectsPageContent {
     selectedCasesTitle: locale === 'ru' ? 'Избранные кейсы' : 'Selected Cases Preview',
     selectedCasesBody:
       locale === 'ru'
-        ? 'Несколько сильных кейсов как быстрый вход в диапазон задач: AI, финтех, automation, Telegram и внутренние системы.'
+        ? ''
         : 'A small set of stronger cases as a quick entry point into the range: AI, fintech, automation, Telegram, and internal systems.',
     selectedCases: cases
       .filter((caseItem) => selectedCaseSlugs.includes(caseItem.slug))
@@ -3139,10 +3138,6 @@ function getAboutPage(locale: Locale): AboutPageContent {
       locale === 'ru' ? 'Старт на этой неделе, MVP за 2-3 недели' : 'Start this week, MVP in 2-3 weeks',
     formSubmitLabel: locale === 'ru' ? 'Написать' : 'Message',
     formTelegramLabel: locale === 'ru' ? 'Мои профили в социальных сетях' : 'My social media profiles',
-    formSuccessLabel:
-      locale === 'ru'
-        ? 'Форма соберет сообщение на русском и английском и откроет Telegram с готовым текстом.'
-        : 'The form will build a Russian and English message and open Telegram with a prepared draft.',
   }
 }
 

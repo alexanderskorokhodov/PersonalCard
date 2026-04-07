@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
 
 type ContactFormProps = {
@@ -12,7 +12,6 @@ type ContactFormProps = {
   timelineLabel: string
   timelinePlaceholder: string
   submitLabel: string
-  successLabel: string
 }
 
 export function ContactForm({
@@ -26,14 +25,49 @@ export function ContactForm({
   timelineLabel,
   timelinePlaceholder,
   submitLabel,
-  successLabel,
 }: ContactFormProps) {
+  const contextFieldRef = useRef<HTMLTextAreaElement>(null)
+  const contextPlaceholderMeasureRef = useRef<HTMLDivElement>(null)
   const [form, setForm] = useState({
     name: '',
     contact: '',
     context: '',
     timeline: '',
   })
+  const [contextMinHeight, setContextMinHeight] = useState<number | null>(null)
+
+  useLayoutEffect(() => {
+    const field = contextFieldRef.current
+    const measure = contextPlaceholderMeasureRef.current
+
+    if (!field || !measure) {
+      return
+    }
+
+    const updateContextMinHeight = () => {
+      const nextMinHeight = Math.max(
+        Math.ceil(field.getBoundingClientRect().height),
+        Math.ceil(measure.getBoundingClientRect().height),
+      )
+
+      setContextMinHeight((current) => (current === nextMinHeight ? current : nextMinHeight))
+    }
+
+    updateContextMinHeight()
+
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', updateContextMinHeight)
+
+      return () => window.removeEventListener('resize', updateContextMinHeight)
+    }
+
+    const resizeObserver = new ResizeObserver(updateContextMinHeight)
+
+    resizeObserver.observe(field)
+    resizeObserver.observe(measure)
+
+    return () => resizeObserver.disconnect()
+  }, [contextPlaceholder])
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -110,13 +144,25 @@ export function ContactForm({
 
         <label className="grid gap-2 text-[13px] font-medium text-[var(--text-muted)]">
           <span>{contextLabel}</span>
-          <textarea
-            value={form.context}
-            onChange={(event) => setForm((current) => ({ ...current, context: event.target.value }))}
-            placeholder={contextPlaceholder}
-            rows={2}
-            className="min-h-[72px] rounded-[18px] border border-black/8 bg-white px-4 py-3 text-[15px] leading-6 text-[var(--text-strong)] outline-none transition placeholder:text-[var(--text-placeholder)] focus:border-black/18"
-          />
+          <div className="relative">
+            <textarea
+              ref={contextFieldRef}
+              value={form.context}
+              onChange={(event) => setForm((current) => ({ ...current, context: event.target.value }))}
+              placeholder={contextPlaceholder}
+              rows={2}
+              style={contextMinHeight ? { minHeight: `${contextMinHeight}px` } : undefined}
+              className="w-full rounded-[18px] border border-black/8 bg-white px-4 py-3 text-[15px] leading-6 text-[var(--text-strong)] outline-none transition placeholder:text-[var(--text-placeholder)] focus:border-black/18"
+            />
+
+            <div
+              ref={contextPlaceholderMeasureRef}
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 top-0 -z-10 rounded-[18px] border border-transparent px-4 py-3 text-[15px] leading-6 whitespace-pre-wrap break-words opacity-0"
+            >
+              {contextPlaceholder}
+            </div>
+          </div>
         </label>
 
         <label className="grid gap-2 text-[13px] font-medium text-[var(--text-muted)]">
@@ -130,8 +176,7 @@ export function ContactForm({
         </label>
       </div>
 
-      <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-[12px] leading-5 text-[var(--text-soft)]">{successLabel}</p>
+      <div className="mt-5 flex justify-end">
         <button
           type="submit"
           className="rounded-full border border-black/10 bg-[var(--text-strong)] px-4 py-2 text-[13px] font-medium text-white transition-transform duration-200 hover:-translate-y-0.5"

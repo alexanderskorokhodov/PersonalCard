@@ -154,7 +154,6 @@ function AboutPage() {
               timelineLabel={aboutPage.formTimelineLabel}
               timelinePlaceholder={aboutPage.formTimelinePlaceholder}
               submitLabel={aboutPage.formSubmitLabel}
-              successLabel={aboutPage.formSuccessLabel}
             />
 
             <div className="surface-card rounded-[24px] px-5 py-5">

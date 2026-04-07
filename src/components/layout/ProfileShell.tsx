@@ -96,7 +96,7 @@ export function ProfileShell() {
             type="button"
             aria-label={shared.scrollToTopLabel}
             onClick={scrollToTop}
-            className="fixed left-4 top-4 z-30 flex w-fit max-w-[calc(100vw-2rem)] items-center gap-3.5 rounded-[24px] border border-black/8 bg-[var(--surface-overlay)] px-3 py-2.5 text-left shadow-[var(--shadow-soft)] backdrop-blur md:left-8 md:top-8 md:max-w-[calc(100vw-4rem)]"
+            className="fixed left-4 top-4 z-30 flex w-fit max-w-[calc(100vw-8.25rem)] items-center gap-3.5 rounded-[24px] border border-black/8 bg-[var(--surface-overlay)] px-3 py-2.5 text-left shadow-[var(--shadow-soft)] backdrop-blur md:left-8 md:top-8 md:max-w-[calc(100vw-10.5rem)]"
             initial={
               reducedMotion
                 ? false
@@ -135,7 +135,7 @@ export function ProfileShell() {
               <div className="truncate text-[14px] font-semibold tracking-[-0.03em] text-[var(--text-strong)] sm:text-[15px]">
                 {profile.name}
               </div>
-              <div className="mt-0.5 text-[11px] leading-[1.2] text-[var(--text-soft)] sm:text-[12px]">
+              <div className="mt-0.5 truncate text-[11px] leading-[1.2] text-[var(--text-soft)] sm:text-[12px]">
                 {profile.role}
               </div>
             </div>

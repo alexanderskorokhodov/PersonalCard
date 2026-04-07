@@ -14,7 +14,7 @@ export function SegmentedNav({ activeKey }: SegmentedNavProps) {
 
   return (
     <nav
-      className="glass-segmented"
+      className="glass-segmented grid w-full max-w-full grid-cols-4 items-stretch overflow-hidden sm:inline-flex sm:w-auto"
       aria-label={shared.primaryNavigationLabel}
     >
       {primaryRoutes.map((route) => {
@@ -27,7 +27,7 @@ export function SegmentedNav({ activeKey }: SegmentedNavProps) {
             onMouseEnter={() => preloadRoute(route.path)}
             onFocus={() => preloadRoute(route.path)}
             className={cn(
-              'relative min-w-[94px] rounded-[12px] px-5 py-2.5 text-center text-[14px] font-medium tracking-[-0.02em] transition-colors duration-200 md:min-w-[98px]',
+              'relative flex min-h-[3rem] min-w-0 items-center justify-center rounded-[12px] px-2.5 py-2.5 text-center text-[13px] leading-[1.15] font-medium tracking-[-0.02em] transition-colors duration-200 sm:min-h-0 sm:min-w-[94px] sm:px-5 sm:py-2.5 sm:text-[14px] sm:leading-[1.2] md:min-w-[98px]',
               isActive
                 ? 'text-[var(--text-strong)]'
                 : 'text-[var(--text-muted)] hover:text-[var(--text-strong)]',
@@ -48,7 +48,7 @@ export function SegmentedNav({ activeKey }: SegmentedNavProps) {
                 }
               />
             ) : null}
-            <span className="relative z-10">
+            <span className="relative z-10 whitespace-normal text-balance">
               {navigation[route.routeKey as keyof typeof navigation]}
             </span>
           </NavLink>

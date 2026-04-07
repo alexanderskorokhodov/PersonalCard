@@ -48,9 +48,11 @@ function HomePage() {
 
         <Reveal className="space-y-3">
           <p className="eyebrow">{projectsPage.selectedCasesTitle}</p>
-          <p className="max-w-[56ch] text-[15px] leading-7 text-[var(--text-muted)]">
-            {projectsPage.selectedCasesBody}
-          </p>
+          {projectsPage.selectedCasesBody ? (
+            <p className="max-w-[56ch] text-[15px] leading-7 text-[var(--text-muted)]">
+              {projectsPage.selectedCasesBody}
+            </p>
+          ) : null}
           <div className="grid gap-4 sm:grid-cols-2">
             {projectsPage.selectedCases.map((item, index) => (
               <ContentCard key={item.title} item={item} delay={index * 0.04} />

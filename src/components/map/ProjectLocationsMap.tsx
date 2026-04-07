@@ -53,7 +53,6 @@ const mapCopyByLocale = {
     openLabel: 'Open full screen',
     closeLabel: 'Close map',
     modalTitle: 'Cities where I shipped products',
-    modalBody: 'Tap a point or pick a project from the list to inspect the task, year, and available detail page.',
     detailLabel: 'Open detail page',
     emptyTitle: 'Project map is empty',
     emptyBody: 'Add project coordinates in src/content/project-locations.ts',
@@ -67,8 +66,6 @@ const mapCopyByLocale = {
     openLabel: 'Открыть на весь экран',
     closeLabel: 'Закрыть карту',
     modalTitle: 'Города, где я запускал проекты',
-    modalBody:
-      'Нажмите на точку или выберите проект в списке, чтобы посмотреть тип задачи, год и ссылку на страницу проекта.',
     detailLabel: 'Открыть страницу проекта',
     emptyTitle: 'Карта проектов пока пустая',
     emptyBody: 'Добавьте координаты проектов в src/content/project-locations.ts',
@@ -407,7 +404,7 @@ export function ProjectLocationsMap() {
           </div>
         </div>
 
-        <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3">
+        <div className="absolute inset-x-4 bottom-4 hidden items-end justify-between gap-3 sm:flex">
           <div className="max-w-[16rem] rounded-[20px] border border-white/75 bg-white/90 px-4 py-3 backdrop-blur">
             <p className="text-[14px] font-medium text-[var(--text-strong)]">
               {selectedProject?.title ?? projects.map((project) => project.title).join(' • ')}
@@ -457,17 +454,7 @@ export function ProjectLocationsMap() {
               padding={{ top: 120, right: 48, bottom: 260, left: 48 }}
             />
 
-            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex items-start justify-between gap-4 p-4 sm:p-6">
-              <div className="max-w-[36rem] rounded-[24px] border border-white/70 bg-white/92 px-4 py-4 backdrop-blur">
-                <p className="eyebrow">{copy.summary}</p>
-                <p className="mt-2 text-[15px] font-medium text-[var(--text-strong)]">
-                  {copy.modalTitle}
-                </p>
-                <p className="mt-2 text-[14px] leading-6 text-[var(--text-muted)]">
-                  {copy.modalBody}
-                </p>
-              </div>
-
+            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex items-start justify-end p-4 sm:p-6">
               <button
                 type="button"
                 onClick={() => setIsFullScreen(false)}
