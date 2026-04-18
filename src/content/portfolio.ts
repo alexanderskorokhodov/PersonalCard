@@ -276,6 +276,15 @@ const maxFlowersSlidesMedia: MediaAsset[] = [
   },
 ]
 
+const strategiexHeroMedia: MediaAsset = {
+  type: 'image',
+  src: '/projects/strategiex.png',
+  alt: 'StrategieX landing page screenshot',
+  aspect: 1.785,
+  frameTint: '#f6f7fb',
+  priority: true,
+}
+
 const lukoilHeroMedia: MediaAsset = {
   type: 'image',
   src: '/projects/lukoil.png',
@@ -371,6 +380,22 @@ const projects: ProjectDefinition[] = [
     location: localized('CIS', 'СНГ'),
     ctaLabel: localized('Open project', 'Открыть проект'),
     media: roadmapersShowcaseMedia,
+  },
+  {
+    slug: 'strategiex',
+    title: localized('StrategieX', 'StrategieX'),
+    description: localized(
+      'A client platform for arbitrage opportunities, trading statistics, and algorithmic scenarios built on top of a multi-layer data stack.',
+      'Клиентская платформа для арбитражных связок, торговой статистики и алгоритмических сценариев, собранная поверх многослойной инфраструктуры обработки данных.',
+    ),
+    category: localized(
+      'Trading infrastructure / Market intelligence',
+      'Trading infrastructure / Market intelligence',
+    ),
+    status: localized('Private platform', 'Закрытая платформа'),
+    location: localized('Partner project', 'Партнёрский проект'),
+    ctaLabel: localized('Open project', 'Открыть проект'),
+    media: strategiexHeroMedia,
   },
   {
     slug: 'max-flowers',
@@ -1050,6 +1075,160 @@ const detailDefinitions: DetailDefinition[] = [
       ],
       [
         'Roadmapers показывает работу на стыке рекрутинговых операций, проектирования AI-взаимодействия и системного продуктового мышления.',
+      ],
+    ),
+    nextLinks: [
+      {
+        label: localized('View more experience', 'Другие кейсы'),
+        href: '/experience',
+      },
+      {
+        label: localized('Discuss project', 'Обсудить проект'),
+        href: '/about#contact',
+      },
+    ],
+  },
+  {
+    kind: 'project',
+    slug: 'strategiex',
+    title: localized('StrategieX', 'StrategieX'),
+    eyebrow: localized('Project', 'Project'),
+    description: localized(
+      'A trading infrastructure product for arbitrage scenarios, market statistics, and algorithmic workflows.',
+      'Продукт торговой инфраструктуры для арбитражных сценариев, рыночной статистики и алгоритмических сценариев.',
+    ),
+    summary: localized(
+      [
+        'StrategieX is a partner product that packages arbitrage opportunities, market statistics, and algorithmic scenarios into a cleaner client-facing platform.',
+        'Behind the landing and the interface sits a more complex backend system for processing and moderating data, while the product layer turns that complexity into a readable operational surface.',
+      ],
+      [
+        'StrategieX — это партнёрский продукт, который упаковывает арбитражные связки, рыночную статистику и алгоритмические сценарии в понятную клиентскую платформу.',
+        'За лендингом и интерфейсом стоит более сложная backend-система обработки и модерации данных, а продуктовый слой превращает эту сложность в читаемую рабочую поверхность.',
+      ],
+    ),
+    meta: localized(
+      ['Project', 'Partner project', 'Trading infrastructure / Market intelligence'],
+      ['Project', 'Партнёрский проект', 'Trading infrastructure / Market intelligence'],
+    ),
+    heroMedia: strategiexHeroMedia,
+    heroLinks: [
+      {
+        label: localized('Website', 'Сайт'),
+        href: 'https://strategiex.ru',
+        external: true,
+      },
+    ],
+    blocks: [
+      {
+        title: localized('Context', 'Контекст'),
+        paragraphs: localized(
+          [
+            'Trading and arbitrage products often expose raw tables, noisy indicators, and internal logic that only a technical operator can parse.',
+            'StrategieX needed a stronger product layer where scenarios, signals, and statistics are easier to read without flattening the underlying complexity.',
+          ],
+          [
+            'Торговые и арбитражные продукты часто выглядят как набор сырых таблиц, шумных индикаторов и внутренней логики, понятной только техническому оператору.',
+            'Для StrategieX нужен был более сильный продуктовый слой, где сценарии, сигналы и статистика считываются быстро, но без упрощения самой инженерной системы.',
+          ],
+        ),
+      },
+      {
+        title: localized('Task', 'Задача'),
+        paragraphs: localized(
+          [
+            'Build both the landing page and the client platform for a partner product, then connect the frontend layer to the backend infrastructure that prepares and moderates market data.',
+          ],
+          [
+            'Собрать и лендинг, и клиентскую платформу для партнёрского продукта, а затем связать frontend-слой с backend-инфраструктурой, которая подготавливает и модерирует рыночные данные.',
+          ],
+        ),
+      },
+      {
+        title: localized('What was done', 'Что было сделано'),
+        paragraphs: localized(
+          [
+            'I designed and implemented the landing plus the core client interface for arbitrage opportunities, trading scenarios, and platform statistics.',
+            'The work included scenario views, state handling, metric visualization, and the frontend integration layer that connects the product surface to backend logic.',
+          ],
+          [
+            'Я спроектировал и реализовал лендинг, а также основной интерфейс клиентской платформы для арбитражных связок, торговых сценариев и статистики.',
+            'В работу вошли сценарные представления, состояния интерфейса, визуализация метрик и frontend-интеграция, которая связывает продуктовый слой с backend-логикой.',
+          ],
+        ),
+      },
+      {
+        title: localized('Product layer', 'Продуктовый слой'),
+        paragraphs: localized(
+          [
+            'The platform is positioned not as a generic “crypto dashboard,” but as a trading infrastructure and market intelligence product.',
+            'The interface helps users compare signals, inspect scenarios, and understand system state without forcing them into raw internal representations.',
+          ],
+          [
+            'Платформа подаётся не как абстрактный «крипто-дашборд», а как продукт торговой инфраструктуры и market intelligence.',
+            'Интерфейс помогает пользователю сравнивать сигналы, читать сценарии и понимать состояние системы, не заставляя работать напрямую с сырой внутренней моделью.',
+          ],
+        ),
+      },
+      {
+        title: localized('Engineering context', 'Инженерный контекст'),
+        paragraphs: localized(
+          [
+            'Behind the public frontend sits a multi-layer event-driven backend infrastructure that processes, filters, and prepares market data before it reaches the client layer.',
+            'My task on the interface side was to turn that internal complexity into a stable and understandable product surface instead of exposing the infrastructure directly.',
+          ],
+          [
+            'За публичным frontend-слоем стоит многослойная event-driven backend-инфраструктура, которая обрабатывает, фильтрует и подготавливает рыночные данные до их попадания в клиентский интерфейс.',
+            'Моя задача на стороне интерфейса состояла в том, чтобы превратить эту внутреннюю сложность в стабильную и понятную продуктовую поверхность, а не показывать инфраструктуру напрямую.',
+          ],
+        ),
+      },
+      {
+        title: localized('My role', 'Моя роль'),
+        paragraphs: localized(
+          [
+            'Technical partner / Frontend & Product Engineer. I was responsible for the landing, the client platform, frontend-backend integration, and packaging complex trading logic into a readable user experience.',
+          ],
+          [
+            'Технический партнёр / Frontend & Product Engineer. Я отвечал за лендинг, клиентскую платформу, frontend-backend интеграцию и упаковку сложной торговой логики в понятный пользовательский опыт.',
+          ],
+        ),
+      },
+      {
+        title: localized('Result / effect', 'Результат / эффект'),
+        paragraphs: localized(
+          [
+            'StrategieX turns a complex trading stack into a clearer product layer: stronger first impression, more readable statistics, and a more usable interface for arbitrage and scenario analysis.',
+            'This project is valuable in the portfolio because it shows product packaging on top of non-trivial analytical infrastructure.',
+          ],
+          [
+            'StrategieX превращает сложный торговый стек в более ясный продуктовый слой: более сильная первая подача, более читаемая статистика и более рабочий интерфейс для анализа арбитражных сценариев.',
+            'Для портфолио этот проект важен тем, что показывает продуктовую упаковку поверх нетривиальной аналитической инфраструктуры.',
+          ],
+        ),
+      },
+    ],
+    metrics: [
+      {
+        value: localized('Landing + platform', 'Лендинг + платформа'),
+        label: localized('Delivery scope for the public and client-facing layers.', 'Контур поставки для публичного и клиентского слоёв продукта.'),
+      },
+      {
+        value: localized('Trading data', 'Торговые данные'),
+        label: localized('Arbitrage scenarios, statistics, and operator-facing market views.', 'Арбитражные сценарии, статистика и рыночные представления для пользователя.'),
+      },
+      {
+        value: localized('Event-driven backend', 'Event-driven backend'),
+        label: localized('A multi-layer infrastructure connected to the client surface.', 'Многослойная инфраструктура, связанная с клиентским интерфейсом.'),
+      },
+    ],
+    closingTitle: localized('Next', 'Следующий шаг'),
+    closing: localized(
+      [
+        'StrategieX matters because it shows how complex analytical infrastructure can be turned into a stronger product layer without making the interface feel like an internal console.',
+      ],
+      [
+        'StrategieX важен тем, что показывает, как сложную аналитическую инфраструктуру можно превратить в более сильный продуктовый слой, не превращая интерфейс во внутреннюю консоль.',
       ],
     ),
     nextLinks: [
