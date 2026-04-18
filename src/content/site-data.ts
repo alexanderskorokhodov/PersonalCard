@@ -47,10 +47,10 @@ const aboutLinksByLocale: Record<Locale, ActionLink[]> = {
       iconSrc: '/icons/social/github.svg',
     },
     {
-      label: 'VC',
-      href: 'https://vc.ru/id5830831',
+      label: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/alexander-skorokhodov/',
       external: true,
-      iconSrc: '/icons/social/vc.svg',
+      iconSrc: '/icons/social/linkedin.svg',
     },
     {
       label: 'Threads',
@@ -73,10 +73,10 @@ const aboutLinksByLocale: Record<Locale, ActionLink[]> = {
       iconSrc: '/icons/social/github.svg',
     },
     {
-      label: 'VC',
-      href: 'https://vc.ru/id5830831',
+      label: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/alexander-skorokhodov/',
       external: true,
-      iconSrc: '/icons/social/vc.svg',
+      iconSrc: '/icons/social/linkedin.svg',
     },
     {
       label: 'Threads',
