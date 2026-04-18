@@ -356,6 +356,22 @@ const fitmentGalleryMedia: MediaAsset[] = [
 
 const projects: ProjectDefinition[] = [
   {
+    slug: 'strategiex',
+    title: localized('StrategieX', 'StrategieX'),
+    description: localized(
+      'A client platform for arbitrage opportunities, trading statistics, and algorithmic scenarios built on top of a multi-layer data stack.',
+      'Клиентская платформа для арбитражных связок, торговой статистики и алгоритмических сценариев, собранная поверх многослойной инфраструктуры обработки данных.',
+    ),
+    category: localized(
+      'Trading infrastructure / Market intelligence',
+      'Trading infrastructure / Market intelligence',
+    ),
+    status: localized('Private platform', 'Закрытая платформа'),
+    location: localized('Partner project', 'Партнёрский проект'),
+    ctaLabel: localized('Open project', 'Открыть проект'),
+    media: strategiexHeroMedia,
+  },
+  {
     slug: 'jewelry-saas',
     title: localized('Jewelry SaaS', 'Ювелирный SaaS'),
     description: localized(
@@ -380,22 +396,6 @@ const projects: ProjectDefinition[] = [
     location: localized('CIS', 'СНГ'),
     ctaLabel: localized('Open project', 'Открыть проект'),
     media: roadmapersShowcaseMedia,
-  },
-  {
-    slug: 'strategiex',
-    title: localized('StrategieX', 'StrategieX'),
-    description: localized(
-      'A client platform for arbitrage opportunities, trading statistics, and algorithmic scenarios built on top of a multi-layer data stack.',
-      'Клиентская платформа для арбитражных связок, торговой статистики и алгоритмических сценариев, собранная поверх многослойной инфраструктуры обработки данных.',
-    ),
-    category: localized(
-      'Trading infrastructure / Market intelligence',
-      'Trading infrastructure / Market intelligence',
-    ),
-    status: localized('Private platform', 'Закрытая платформа'),
-    location: localized('Partner project', 'Партнёрский проект'),
-    ctaLabel: localized('Open project', 'Открыть проект'),
-    media: strategiexHeroMedia,
   },
   {
     slug: 'max-flowers',
