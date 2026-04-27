@@ -3814,11 +3814,11 @@ function getProjectsPage(locale: Locale): ProjectsPageContent {
       locale === 'ru'
         ? 'И другие проекты в корпоративной и образовательной среде.'
         : 'And other projects delivered in corporate and educational environments.',
-    featuredTitle: locale === 'ru' ? 'Ключевые продукты и системы' : 'Selected Product Work',
+    featuredTitle: '',
     featuredBody:
       locale === 'ru'
-        ? 'Избранный слой портфолио: продукты и системы, которые лучше всего показывают мой способ сборки ранней версии и дальнейшего роста.'
-        : 'A tighter portfolio layer: products and systems that best show launch speed, product thinking, and technical depth.',
+        ? 'Продукты и системы, которые я довёл от идеи до запуска.'
+        : 'Products and systems I took from idea to launch-ready software.',
     featuredProjects: getFeaturedProjects(locale),
     selectedCasesTitle: locale === 'ru' ? 'Избранные кейсы' : 'Selected Cases Preview',
     selectedCasesBody:
