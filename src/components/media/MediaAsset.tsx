@@ -7,6 +7,7 @@ type MediaAssetProps = {
   asset: MediaAssetType
   className?: string
   roundedClassName?: string
+  priority?: boolean
 }
 
 function useNearViewport(priority = false) {
@@ -45,10 +46,12 @@ export function MediaAsset({
   asset,
   className,
   roundedClassName,
+  priority,
 }: MediaAssetProps) {
   const reducedMotion = useReducedMotion()
   const [loaded, setLoaded] = useState(false)
-  const { ref, isNear } = useNearViewport(asset.priority)
+  const shouldPrioritize = priority ?? asset.priority ?? false
+  const { ref, isNear } = useNearViewport(shouldPrioritize)
 
   const aspectRatio = useMemo(() => asset.aspect ?? 1.6, [asset.aspect])
 
@@ -80,7 +83,8 @@ export function MediaAsset({
         <img
           src={asset.src}
           alt={asset.alt}
-          loading={asset.priority ? 'eager' : 'lazy'}
+          loading={shouldPrioritize ? 'eager' : 'lazy'}
+          decoding="async"
           onLoad={() => setLoaded(true)}
           className={cn(
             'h-full w-full transition duration-700',
@@ -100,7 +104,7 @@ export function MediaAsset({
           playsInline
           loop={!reducedMotion}
           autoPlay={!reducedMotion}
-          preload={asset.priority ? 'auto' : 'metadata'}
+          preload={shouldPrioritize ? 'auto' : 'metadata'}
           onLoadedData={() => setLoaded(true)}
           className={cn(
             'h-full w-full transition duration-700',

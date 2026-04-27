@@ -31,6 +31,7 @@ export function ShowcaseCard({
           asset={item.media}
           className={cn('h-[72px] w-[100px] shrink-0 rounded-[16px]', frameClassName)}
           roundedClassName="rounded-[16px]"
+          priority={false}
         />
 
         <div className="min-w-0 flex-1 space-y-1">
