@@ -7,6 +7,7 @@ export type MediaAsset =
       priority?: boolean
       frameTint?: string
       objectPosition?: string
+      objectFit?: 'cover' | 'contain'
     }
   | {
       type: 'video'
@@ -17,6 +18,7 @@ export type MediaAsset =
       frameTint?: string
       poster?: string
       objectPosition?: string
+      objectFit?: 'cover' | 'contain'
     }
 
 export type ActionLink = {

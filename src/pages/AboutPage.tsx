@@ -25,7 +25,7 @@ function ProjectLocationsMapFallback() {
 
 function AboutPage() {
   const { aboutPage } = usePortfolioContent()
-  const { aboutLinks, profile } = useSiteContent()
+  const { aboutLinks } = useSiteContent()
 
   return (
     <>
@@ -36,6 +36,8 @@ function AboutPage() {
 
       <div className="space-y-[var(--space-stack-md)]">
         <Reveal className="space-y-3">
+          <p className="eyebrow">{aboutPage.introEyebrow}</p>
+          <h2 className="headline-md max-w-[16ch] text-balance">{aboutPage.introTitle}</h2>
           <div className="copy-stack max-w-[60ch] text-[15px] leading-7 text-[var(--text-muted)]">
             {aboutPage.introBody.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
@@ -46,10 +48,12 @@ function AboutPage() {
         {aboutPage.backgroundBody.length > 0 ? (
           <Reveal className="space-y-3">
             <p className="eyebrow">{aboutPage.backgroundTitle}</p>
-            <div className="copy-stack max-w-[60ch] text-[15px] leading-7 text-[var(--text-muted)]">
-              {aboutPage.backgroundBody.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
+            <div className="surface-card rounded-[24px] px-5 py-5">
+              <div className="copy-stack max-w-[62ch] text-[15px] leading-7 text-[var(--text-muted)]">
+                {aboutPage.backgroundBody.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
             </div>
           </Reveal>
         ) : null}
@@ -80,7 +84,11 @@ function AboutPage() {
           </div>
         </Reveal>
 
-        <Reveal className="w-full">
+        <Reveal className="space-y-3">
+          <p className="eyebrow">{aboutPage.coverageTitle}</p>
+          <p className="max-w-[56ch] text-[15px] leading-7 text-[var(--text-muted)]">
+            {aboutPage.coverageBody}
+          </p>
           <Suspense fallback={<ProjectLocationsMapFallback />}>
             <ProjectLocationsMap />
           </Suspense>
@@ -144,7 +152,6 @@ function AboutPage() {
 
           <div className="grid gap-5">
             <ContactForm
-              telegramUsername={profile.telegramUsername}
               nameLabel={aboutPage.formNameLabel}
               namePlaceholder={aboutPage.formNamePlaceholder}
               contactLabel={aboutPage.formContactLabel}

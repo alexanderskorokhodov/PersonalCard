@@ -42,6 +42,38 @@ type TrustedGroup = {
   organizations: TrustedOrganization[]
 }
 
+type HomePageContent = {
+  metaTitle: string
+  metaDescription: string
+  heroEyebrow: string
+  heroTitle: string
+  heroLead: string
+  heroHighlights: string[]
+  heroPrimaryLink: ActionLink
+  heroSecondaryLink: ActionLink
+  heroFootnote: string
+  proofTitle: string
+  proofLead: string
+  proofItems: PortfolioCard[]
+  fitTitle: string
+  fitLead: string
+  fitItems: WorkArea[]
+  workTitle: string
+  workLead: string
+  workItems: PortfolioCard[]
+  processTitle: string
+  processLead: string
+  processSteps: WorkflowStep[]
+  trustTitle: string
+  trustLead: string
+  trustGroups: TrustedGroup[]
+  trustFootnote?: string
+  ctaEyebrow: string
+  ctaTitle: string
+  ctaBody: string
+  ctaLinks: ActionLink[]
+}
+
 type ProjectsPageContent = {
   metaTitle: string
   metaDescription: string
@@ -93,6 +125,8 @@ type AboutPageContent = {
     text: string
     links?: ActionLink[]
   }>
+  coverageTitle: string
+  coverageBody: string
   domainsTitle: string
   domains: string[]
   workflowTitle: string
@@ -115,6 +149,7 @@ type AboutPageContent = {
 }
 
 type PortfolioContent = {
+  homePage: HomePageContent
   projectsPage: ProjectsPageContent
   casesPage: CasesPageContent
   aboutPage: AboutPageContent
@@ -354,7 +389,87 @@ const fitmentGalleryMedia: MediaAsset[] = [
   },
 ]
 
+const golfHeroMedia: MediaAsset = {
+  type: 'image',
+  src: '/projects/golf/golf-main.png',
+  alt: 'AR golf trainer product concept slide with motion tracking flow',
+  aspect: 1.75,
+  frameTint: '#f5f6f2',
+  priority: true,
+}
+
+const golfKeypointsMedia: MediaAsset = {
+  type: 'image',
+  src: '/projects/golf/golf-keypoints.png',
+  alt: 'AR golf trainer keypoints and classification slide',
+  aspect: 1.75,
+  frameTint: '#f5f6f2',
+}
+
+const golfTeamStageMedia: MediaAsset = {
+  type: 'image',
+  src: '/projects/golf/golf-team-stage.png',
+  alt: 'AR golf trainer team with first place certificate on stage',
+  aspect: 1.5,
+  frameTint: '#101410',
+}
+
+const golfWinnerCertificateMedia: MediaAsset = {
+  type: 'image',
+  src: '/projects/golf/golf-winner-certificate.jpeg',
+  alt: 'AR golf trainer winner certificate and project booklet',
+  aspect: 1.5,
+  frameTint: '#e5e2da',
+  objectFit: 'contain',
+}
+
+const golfHackathonRoomMedia: MediaAsset = {
+  type: 'image',
+  src: '/projects/golf/golf-hackathon-room.jpg',
+  alt: 'AR golf trainer hackathon workspace',
+  aspect: 1.5,
+  frameTint: '#ece7e5',
+}
+
+const proverysiteHomeMedia: MediaAsset = {
+  type: 'image',
+  src: '/projects/proverysite/2.png',
+  alt: 'Check Your Site homepage with domain input',
+  aspect: 1,
+  frameTint: '#071017',
+  priority: true,
+}
+
+const proverysiteScanMedia: MediaAsset = {
+  type: 'image',
+  src: '/projects/proverysite/3.png',
+  alt: 'Check Your Site scan progress screen',
+  aspect: 1,
+  frameTint: '#071017',
+}
+
+const proverysiteResultMedia: MediaAsset = {
+  type: 'image',
+  src: '/projects/proverysite/1.png',
+  alt: 'Check Your Site preview report and full audit checkout',
+  aspect: 1,
+  frameTint: '#071017',
+}
+
 const projects: ProjectDefinition[] = [
+  {
+    slug: 'proverysvoisite',
+    title: localized('Check Your Site', 'Проверь Свой Сайт'),
+    description: localized(
+      'A productized website audit: domain input, automated scan, preliminary findings, payment, and a full PDF/web report.',
+      'Продуктовый аудит сайта: ввод домена, автоматическая проверка, предварительные риски, оплата и полный PDF/web-отчёт.',
+    ),
+    category: localized('Website compliance audit / LegalTech', 'Аудит сайта / LegalTech'),
+    status: localized('Live product', 'Запущенный продукт'),
+    location: localized('proverysvoysite.ru', 'proverysvoysite.ru'),
+    ctaLabel: localized('Open project', 'Открыть проект'),
+    media: proverysiteHomeMedia,
+  },
   {
     slug: 'strategiex',
     title: localized('StrategieX', 'StrategieX'),
@@ -754,6 +869,189 @@ const selectedCaseSlugs = [
 ]
 
 const detailDefinitions: DetailDefinition[] = [
+  {
+    kind: 'project',
+    slug: 'proverysvoisite',
+    title: localized('Check Your Site', 'Проверь Свой Сайт'),
+    eyebrow: localized('Project', 'Project'),
+    description: localized(
+      'A domain-first website audit product for checking forms, legal pages, cookies, and counters.',
+      'Продукт для проверки сайта по домену: формы, юридические страницы, cookie и счётчики.',
+    ),
+    summary: localized(
+      [
+        'Check Your Site turns a vague compliance concern into a simple product flow: enter a domain, start an automated scan, review the first risks, and buy the full audit only when the value is clear.',
+        'The service checks a public website, finds risk signals around forms, legal pages, cookies, counters, and tracking scripts, then packages the result into a web report and PDF.',
+      ],
+      [
+        '«Проверь Свой Сайт» превращает размытый запрос на юридическую и техническую проверку в простой продуктовый сценарий: ввести домен, запустить автоматическую проверку, увидеть первые риски и купить полный аудит только после предварительного результата.',
+        'Сервис проверяет публичный сайт, ищет риски вокруг форм, юридических страниц, cookies, счётчиков и скриптов аналитики, а затем упаковывает результат в web-отчёт и PDF.',
+      ],
+    ),
+    meta: localized(
+      ['Project', 'proverysvoysite.ru', 'Website compliance audit / LegalTech'],
+      ['Project', 'proverysvoysite.ru', 'Аудит сайта / LegalTech'],
+    ),
+    heroMedia: proverysiteHomeMedia,
+    heroLinks: [
+      {
+        label: localized('Website', 'Сайт'),
+        href: 'https://proverysvoysite.ru',
+        external: true,
+      },
+    ],
+    blocks: [
+      {
+        title: localized('Context', 'Контекст'),
+        paragraphs: localized(
+          [
+            'Small businesses often have forms, analytics, cookies, and legal documents scattered across a website, but no clear way to understand whether the site is ready for users and regulators.',
+            'The product needed to feel lighter than a manual legal audit, but more useful than a generic checklist.',
+          ],
+          [
+            'У малого бизнеса на сайте часто есть формы, аналитика, cookies и юридические документы, но нет понятного способа быстро оценить, всё ли готово для пользователей и требований регулятора.',
+            'Продукт должен был ощущаться легче ручного юридического аудита, но быть полезнее обычного чек-листа.',
+          ],
+        ),
+      },
+      {
+        title: localized('Entry flow', 'Вход в проверку'),
+        paragraphs: localized(
+          [
+            'The first screen is intentionally narrow: one domain field, personal-data consent, and a clear “check site” action.',
+            'The user does not upload files or prepare exports. The product works with a public domain and keeps the first step close to a normal search action.',
+          ],
+          [
+            'Первый экран намеренно узкий: одно поле для домена, согласие на обработку персональных данных и понятное действие «Проверить сайт».',
+            'Пользователь не загружает файлы и не готовит выгрузки. Продукт работает с публичным доменом, поэтому первый шаг похож на обычный поисковый запрос.',
+          ],
+        ),
+        media: [proverysiteHomeMedia],
+      },
+      {
+        title: localized('Scan flow', 'Проверка сайта'),
+        paragraphs: localized(
+          [
+            'After confirmation the user sees a visible scan process: connecting to the site, analyzing pages, finding forms, checking cookies and counters, and preparing the result.',
+            'This matters for trust. The product does not leave the user on a generic loading screen; it explains what is being checked while the crawler works.',
+          ],
+          [
+            'После подтверждения пользователь видит понятный процесс: подключение к сайту, анализ страниц, поиск форм, проверка cookie и счётчиков, подготовка результата.',
+            'Это важно для доверия. Сервис не оставляет человека на абстрактной загрузке, а показывает, что именно проверяется, пока краулер обходит сайт.',
+          ],
+        ),
+        media: [proverysiteScanMedia],
+      },
+      {
+        title: localized('Crawler and evidence', 'Crawler и доказательства'),
+        paragraphs: localized(
+          [
+            'The backend creates a scan job, puts it into a queue, and uses Crawlee with Playwright to inspect the public website.',
+            'The worker collects pages, forms, scripts, network signals, cookie scenarios, and links. A rule engine converts that evidence into concrete findings instead of returning raw crawl data.',
+          ],
+          [
+            'Серверная часть создаёт задачу сканирования, ставит её в очередь и через Crawlee с Playwright обходит публичный сайт.',
+            'Воркер собирает страницы, формы, скрипты, сетевые сигналы, cookie-сценарии и ссылки. Движок правил превращает эти данные в конкретные проблемы, а не отдаёт пользователю сырой результат обхода.',
+          ],
+        ),
+      },
+      {
+        title: localized('Preview and purchase', 'Preview и покупка отчёта'),
+        paragraphs: localized(
+          [
+            'After the scan the user receives a preview: risk level, number of issues, one expanded example, and a clear offer for the full report.',
+            'The paid package costs 990 RUB and includes all detected risks, affected pages, explanations in simple language, recommendations, a web version, and PDF.',
+          ],
+          [
+            'После проверки пользователь получает предварительный результат: уровень риска, количество проблем, один раскрытый пример и понятное предложение купить полный отчёт.',
+            'Платный пакет стоит 990 ₽ и включает все найденные риски, страницы с проблемами, объяснения простым языком, рекомендации, web-версию и PDF.',
+          ],
+        ),
+        media: [proverysiteResultMedia],
+      },
+      {
+        title: localized('Payment and access', 'Оплата и доступ'),
+        paragraphs: localized(
+          [
+            'Checkout asks only for what is needed: email, consent to personal-data processing, and acceptance of the offer.',
+            'In production mode the system creates an audit order and a YooKassa payment session, stores the identifiers for the return flow, and unlocks report loading after the paid status is confirmed.',
+          ],
+          [
+            'Экран оплаты запрашивает только необходимое: email, согласие на обработку персональных данных и принятие оферты.',
+            'В рабочем режиме система создаёт заказ на аудит и платёжную сессию ЮKassa, сохраняет идентификаторы для возврата после оплаты и открывает загрузку отчёта после подтверждения платежа.',
+          ],
+        ),
+      },
+      {
+        title: localized('Full report', 'Полный отчёт'),
+        paragraphs: localized(
+          [
+            'After payment the backend generates the full report from scan evidence, preview data, findings, and pipeline execution details.',
+            'The final report includes risk score, issue severity, the main conclusion, top fixes, legal-page checks, priority actions, PDF access, email delivery, and a request path for help with implementation.',
+          ],
+          [
+            'После оплаты серверная часть собирает полный отчёт из данных сканирования, предварительного результата, найденных проблем и деталей выполнения проверки.',
+            'Финальный отчёт включает оценку риска, уровни критичности, главный вывод, топ исправлений, проверку юридических страниц, приоритетные действия, PDF, отправку копии на email и сценарий заявки на помощь с внедрением.',
+          ],
+        ),
+      },
+      {
+        title: localized('Role and product value', 'Роль и продуктовая ценность'),
+        paragraphs: localized(
+          [
+            'The project is valuable because it is a complete commercial loop: acquisition, domain validation, scan orchestration, preview value, paid conversion, report generation, and follow-up service demand.',
+            'It turns an expert service into a product that can be started by a non-technical user in a couple of minutes.',
+          ],
+          [
+            'Ценность проекта в полном коммерческом контуре: привлечение, валидация домена, управление проверкой, ценность предварительного результата, платная конверсия, генерация отчёта и следующий спрос на помощь.',
+            'Экспертная услуга превращается в продукт, который нетехнический пользователь может запустить за пару минут.',
+          ],
+        ),
+      },
+    ],
+    metrics: [
+      {
+        value: localized('Domain-first', 'Domain-first'),
+        label: localized(
+          'The user enters a public domain; no file upload is needed.',
+          'Пользователь вводит публичный домен, без загрузки сайта файлом.',
+        ),
+      },
+      {
+        value: 'Crawlee + Playwright',
+        label: localized(
+          'Public-site crawling, forms, scripts, network evidence, cookies, and links.',
+          'Обход публичного сайта, формы, скрипты, сетевые сигналы, cookie и ссылки.',
+        ),
+      },
+      {
+        value: localized('990 RUB', '990 ₽'),
+        label: localized(
+          'Paid full audit package with web report and PDF.',
+          'Платный полный аудит с web-отчётом и PDF.',
+        ),
+      },
+    ],
+    closingTitle: localized('Next', 'Следующий шаг'),
+    closing: localized(
+      [
+        'Check Your Site is placed first because it shows a complete product rather than a single interface: a real user path, backend automation, payment, report generation, and a clear business model.',
+      ],
+      [
+        '«Проверь Свой Сайт» стоит первым проектом, потому что показывает не отдельный интерфейс, а цельный продукт: пользовательский путь, серверную автоматизацию, оплату, генерацию отчёта и понятную бизнес-модель.',
+      ],
+    ),
+    nextLinks: [
+      {
+        label: localized('View more experience', 'Другие кейсы'),
+        href: '/experience',
+      },
+      {
+        label: localized('Discuss project', 'Обсудить проект'),
+        href: '/about#contact',
+      },
+    ],
+  },
   {
     kind: 'project',
     slug: 'jewelry-saas',
@@ -1605,7 +1903,7 @@ const detailDefinitions: DetailDefinition[] = [
       ['2023', 'Saint Petersburg', 'AI and Computer Vision'],
       ['2023', 'Санкт-Петербург', 'AI и Computer Vision'],
     ),
-    heroMedia: abstractCaseHero,
+    heroMedia: golfHeroMedia,
     blocks: [
       {
         title: localized('Context', 'Контекст'),
@@ -1688,12 +1986,20 @@ const detailDefinitions: DetailDefinition[] = [
         title: localized('Materials', 'Материалы'),
         paragraphs: localized(
           [
-            'Screens and presentation artifacts are available in limited format.',
+            'The public materials show the product idea, motion-tracking logic, keypoints, the classification layer, and the competition context around the prototype.',
           ],
           [
-            'Экраны и презентационные материалы доступны в ограниченном формате.',
+            'Публичные материалы показывают идею продукта, логику motion tracking, ключевые точки, классификационный слой и конкурсный контекст вокруг прототипа.',
           ],
         ),
+        media: [
+          golfHeroMedia,
+          golfKeypointsMedia,
+          golfTeamStageMedia,
+          golfWinnerCertificateMedia,
+          golfHackathonRoomMedia,
+        ],
+        mediaLayout: 'scroll-row',
       },
     ],
     metrics: [
@@ -2860,6 +3166,38 @@ function localizeProject(project: ProjectDefinition, locale: Locale): ShowcaseIt
   }
 }
 
+function getFeaturedProjects(locale: Locale): ShowcaseItem[] {
+  const items = projects.map((project) => localizeProject(project, locale))
+
+  const fitmentItem: ShowcaseItem = {
+    title: pick(localized('Wheel fitment for cars online', 'Примерка онлайн-дисков на машину'), locale),
+    description: pick(
+      localized(
+        'A staged AI showroom for wheel selection, repeatable renders, and a stronger conversion surface.',
+        'Многошаговый AI-шоурум для подбора дисков, repeatable-рендеров и более сильной конверсионной поверхности.',
+      ),
+      locale,
+    ),
+    href: '/experience/fitment',
+    ctaLabel: pick(localized('Open case', 'Открыть кейс'), locale),
+    media: {
+      ...fitmentHeroMedia,
+      alt: pick(localized('Wheel fitment for cars online', 'Примерка онлайн-дисков на машину'), locale),
+    },
+    meta: pick(
+      localized(
+        ['AI showroom', 'Repeatable pipeline', 'Automotive commerce'],
+        ['AI showroom', 'Repeatable pipeline', 'Automotive commerce'],
+      ),
+      locale,
+    ),
+  }
+
+  items.push(fitmentItem)
+
+  return items
+}
+
 function localizeCase(caseItem: CaseDefinition, locale: Locale): PortfolioCard & { categoryId: string } {
   return {
     title: pick(caseItem.title, locale),
@@ -2941,35 +3279,441 @@ export function getDetailStudy(kind: 'project' | 'case', slug: string, locale: L
   }
 }
 
+function getHomePage(locale: Locale): HomePageContent {
+  const profileName = getSiteContent(locale).profile.name
+
+  return {
+    metaTitle: `${profileName} | ${locale === 'ru' ? 'Главная' : 'Home'}`,
+    metaDescription:
+      locale === 'ru'
+        ? 'Технический партнёр для ранней стадии: MVP, первая версия продукта, продуктовая логика и быстрый запуск без лишней сложности.'
+        : 'Early-stage technical partner for founders and small teams: MVP scope, first release, product logic, and fast launch without unnecessary complexity.',
+    heroEyebrow:
+      locale === 'ru' ? 'Технический партнёр ранней стадии' : 'Early-stage technical partner',
+    heroTitle:
+      locale === 'ru'
+        ? 'Помогаю фаундерам и небольшим командам быстро собрать первую рабочую версию продукта.'
+        : 'I help founders build the first real version of their product.',
+    heroLead:
+      locale === 'ru'
+        ? 'Обычно это значит: определить границы MVP, собрать продуктовую логику, принять ключевые технические решения, лично включиться в разработку и довести первую версию до запуска без лишней сложности.'
+        : 'Usually that means MVP scope, product logic, technical decisions, hands-on build, and getting a launchable first version out without the wrong complexity.',
+    heroHighlights:
+      locale === 'ru'
+        ? [
+            'Проверь Свой Сайт: автоматический аудит публичного сайта, предварительный результат, оплата и полный PDF/web-отчёт.',
+            'StrategieX: запуск за 1 месяц, подключено 10 бирж-партнёров, продукт в проде.',
+            'AI golf trainer: рабочий прототип собран за 3 дня.',
+          ]
+        : [
+            'Check Your Site: automated public-site audit, preliminary result, payment, and a full PDF/web report.',
+            'StrategieX: launched in 1 month, connected 10 exchange partners, now in production.',
+            'AI golf trainer: working prototype assembled in 3 days.',
+          ],
+    heroPrimaryLink:
+      locale === 'ru'
+        ? { label: 'Обсудить MVP', href: '/about#contact' }
+        : { label: 'Discuss your MVP', href: '/about#contact' },
+    heroSecondaryLink:
+      locale === 'ru'
+        ? { label: 'Смотреть ключевые работы', href: '/projects' }
+        : { label: 'See selected work', href: '/projects' },
+    heroFootnote:
+      locale === 'ru'
+        ? 'Открыт к founder-led продуктам и международным коллаборациям.'
+        : 'Open to founder-led products and international collaborations.',
+    proofTitle: locale === 'ru' ? 'Доказательства в работе' : 'Proof in practice',
+    proofLead:
+      locale === 'ru'
+        ? 'Несколько кейсов, которые показывают скорость запуска, продуктовую глубину и умение превращать сложную логику в рабочий продукт.'
+        : 'Recent examples that show launch speed, product depth, and the ability to turn complex logic into a usable product.',
+    proofItems:
+      locale === 'ru'
+        ? [
+            {
+              title: 'Проверь Свой Сайт',
+              description:
+                'Запущенный сервис для проверки сайта по домену: формы, юридические страницы, cookies, счётчики, оплата и полный отчёт с PDF.',
+              meta: ['Домен -> аудит', 'Crawlee / Playwright', '990 ₽'],
+              href: '/projects/proverysvoisite',
+              ctaLabel: 'Открыть проект',
+            },
+            {
+              title: 'StrategieX',
+              description:
+                'Собран и запущен за 1 месяц, подключено 10 бирж-партнёров, продукт выведен в production.',
+              meta: ['1 месяц', '10 партнёров', 'Production'],
+              href: '/projects/strategiex',
+              ctaLabel: 'Открыть проект',
+            },
+            {
+              title: 'Ювелирный SaaS',
+              description:
+                'Более глубокий SaaS-контур: каталог, CRM-логика, внутренние процессы и витрина в одной системе.',
+              meta: ['Vertical SaaS', 'Бизнес-логика', 'База для роста'],
+              href: '/projects/jewelry-saas',
+              ctaLabel: 'Открыть проект',
+            },
+            {
+              title: 'MOEX portfolio case',
+              description:
+                'Финтех-кейс на основе математической модели, собранный за несколько дней и переведённый в понятный сценарий принятия решения.',
+              meta: ['Несколько дней', 'Математическая логика', 'Финтех'],
+              href: '/experience/investor-portfolio',
+              ctaLabel: 'Открыть кейс',
+            },
+            {
+              title: 'AI golf trainer',
+              description:
+                'Прототип, собранный за 3 дня, чтобы быстро и правдоподобно проверить interaction-heavy идею.',
+              meta: ['3 дня', 'Прототип', 'AI / AR'],
+              href: '/experience/golf-ar',
+              ctaLabel: 'Открыть кейс',
+            },
+          ]
+        : [
+            {
+              title: 'Check Your Site',
+              description:
+                'A live service for checking a website by domain: forms, legal pages, cookies, counters, payment, and a full PDF report.',
+              meta: ['Domain-first', 'Crawlee / Playwright', '990 RUB'],
+              href: '/projects/proverysvoisite',
+              ctaLabel: 'Open project',
+            },
+            {
+              title: 'StrategieX',
+              description:
+                'Built and launched in 1 month, connected 10 exchange partners, and brought a trading product into production.',
+              meta: ['1 month', '10 partners', 'Production'],
+              href: '/projects/strategiex',
+              ctaLabel: 'Open project',
+            },
+            {
+              title: 'Jewelry SaaS',
+              description:
+                'A deeper SaaS system across catalog, CRM logic, internal workflows, and storefront, showing product depth beyond a thin MVP.',
+              meta: ['Vertical SaaS', 'Business logic', 'Scalable base'],
+              href: '/projects/jewelry-saas',
+              ctaLabel: 'Open project',
+            },
+            {
+              title: 'MOEX portfolio case',
+              description:
+                'A fintech case built around a mathematical model in a few days, translating complex logic into a clearer decision flow.',
+              meta: ['Few days', 'Math-based logic', 'Fintech'],
+              href: '/experience/investor-portfolio',
+              ctaLabel: 'Open case',
+            },
+            {
+              title: 'AI golf trainer',
+              description:
+                'A 3-day prototype that turned an interaction-heavy concept into something testable fast.',
+              meta: ['3 days', 'Prototype', 'AI / AR'],
+              href: '/experience/golf-ar',
+              ctaLabel: 'Open case',
+            },
+          ],
+    fitTitle: locale === 'ru' ? 'Где я полезнее всего' : 'Where I fit best',
+    fitLead:
+      locale === 'ru'
+        ? 'Сильнейший fit — ранняя стадия, где продукту ещё нужны фокус, скорость и внятные технические решения.'
+        : 'The strongest fit is early-stage work where the product still needs focus, speed, and technical judgment.',
+    fitItems:
+      locale === 'ru'
+        ? [
+            {
+              title: 'Founder-led MVP и first release',
+              description:
+                'Нужен не просто исполнитель, а человек, который поможет определить первую версию, отсечь лишнее и удержать продукт вокруг core value.',
+            },
+            {
+              title: 'Небольшие команды без сильного техпартнёра',
+              description:
+                'Могу рано включаться в продуктовые и технические решения, лично собирать первую версию и не раздувать команду раньше времени.',
+            },
+            {
+              title: 'Запуск без технического хаоса',
+              description:
+                'Задача не только выпустить быстро, но и не строить всё заново сразу после первого релиза.',
+            },
+          ]
+        : [
+            {
+              title: 'Founder-led MVPs and first releases',
+              description:
+                'You need more than execution: someone to define the first version, cut non-essential features, and keep the product aimed at the core value.',
+            },
+            {
+              title: 'Small teams without senior technical ownership',
+              description:
+                'I can step into product and technical decisions early, build hands-on, and reduce the need for a large team too soon.',
+            },
+            {
+              title: 'Launches without technical chaos',
+              description:
+                'The goal is not only to ship fast, but to avoid rebuilding the foundation right after launch.',
+            },
+          ],
+    workTitle: locale === 'ru' ? 'Ключевые продуктовые кейсы' : 'Selected product work',
+    workLead:
+      locale === 'ru'
+        ? 'Каждый проект здесь не для количества, а как доказательство конкретной сильной стороны.'
+        : 'Each project is here for what it proves: launch speed, product depth, rapid validation, or handling non-trivial logic.',
+    workItems:
+      locale === 'ru'
+        ? [
+            {
+              title: 'Проверь Свой Сайт',
+              description:
+                'Доказывает полный продуктовый контур: ввод домена, автоматическое сканирование, предварительный результат, checkout, оплата и генерация полного отчёта.',
+              meta: ['Аудит сайта', 'Payments', 'Full report'],
+              href: '/projects/proverysvoisite',
+              ctaLabel: 'Открыть проект',
+            },
+            {
+              title: 'StrategieX',
+              description:
+                'Клиентский продуктовый слой поверх торговой инфраструктуры. Доказывает скорость запуска, интеграции и production readiness.',
+              meta: ['Скорость запуска', 'Интеграции', 'Product layer'],
+              href: '/projects/strategiex',
+              ctaLabel: 'Открыть проект',
+            },
+            {
+              title: 'Ювелирный SaaS',
+              description:
+                'Доказывает системность: workflows, CRM-логика, витрина и продуктовая структура, которую можно углублять дальше.',
+              meta: ['System design', 'Operations', 'Vertical SaaS'],
+              href: '/projects/jewelry-saas',
+              ctaLabel: 'Открыть проект',
+            },
+            {
+              title: 'MOEX portfolio case',
+              description:
+                'Доказывает умение делать модельную fintech-логику понятной для пользователя, а не выкладывать её сырым слоем.',
+              meta: ['Decision support', 'Финтех', 'Model-driven logic'],
+              href: '/experience/investor-portfolio',
+              ctaLabel: 'Открыть кейс',
+            },
+            {
+              title: 'AI golf trainer',
+              description:
+                'Доказывает, что interaction-heavy идею можно быстро довести до правдоподобного рабочего прототипа.',
+              meta: ['Rapid validation', 'Interaction design', 'Prototype speed'],
+              href: '/experience/golf-ar',
+              ctaLabel: 'Открыть кейс',
+            },
+          ]
+        : [
+            {
+              title: 'Check Your Site',
+              description:
+                'Shows a complete product loop: domain input, automated scanning, preliminary findings, checkout, payment, and full report generation.',
+              meta: ['Website audit', 'Payments', 'Full report'],
+              href: '/projects/proverysvoisite',
+              ctaLabel: 'Open project',
+            },
+            {
+              title: 'StrategieX',
+              description:
+                'A client-facing product layer for trading infrastructure. Shows launch speed, integrations, and production readiness.',
+              meta: ['Launch speed', 'Integrations', 'Product layer'],
+              href: '/projects/strategiex',
+              ctaLabel: 'Open project',
+            },
+            {
+              title: 'Jewelry SaaS',
+              description:
+                'Shows system thinking: workflows, CRM logic, storefront, and a product structure that can grow deeper over time.',
+              meta: ['System design', 'Operations', 'Vertical SaaS'],
+              href: '/projects/jewelry-saas',
+              ctaLabel: 'Open project',
+            },
+            {
+              title: 'MOEX portfolio case',
+              description:
+                'Shows the ability to make model-driven fintech logic understandable instead of exposing users to raw complexity.',
+              meta: ['Decision support', 'Fintech', 'Model-driven logic'],
+              href: '/experience/investor-portfolio',
+              ctaLabel: 'Open case',
+            },
+            {
+              title: 'AI golf trainer',
+              description:
+                'Shows how an interaction-heavy idea can be validated quickly with a believable working prototype.',
+              meta: ['Rapid validation', 'Interaction design', 'Prototype speed'],
+              href: '/experience/golf-ar',
+              ctaLabel: 'Open case',
+            },
+          ],
+    processTitle: locale === 'ru' ? 'Как я обычно работаю' : 'How I usually work',
+    processLead:
+      locale === 'ru'
+        ? 'На ранней стадии главное не количество фич, а правильно выбрать первую версию и довести её до запуска.'
+        : 'The early stage is mostly about focus: choosing the right first version and shipping it without dragging unnecessary complexity into the product.',
+    processSteps:
+      locale === 'ru'
+        ? [
+            {
+              title: '1. Определяем минимальную версию, которую вообще стоит запускать',
+              description:
+                'Фиксируем core loop, главное ограничение и то, что первый релиз должен реально доказать.',
+            },
+            {
+              title: '2. Собираем продуктовую и техническую логику',
+              description:
+                'Сценарии, сущности, интеграции, порядок сборки и решения, которые важно принять до того, как код начнёт расползаться.',
+            },
+            {
+              title: '3. Собираем первую рабочую версию',
+              description:
+                'Лично включаюсь в реализацию и держу фокус на запуске, а не на презентационном артефакте или преждевременной сложности.',
+            },
+            {
+              title: '4. Дожимаем, запускаем и наращиваем следующий слой',
+              description:
+                'После релиза закрываем слабые места, добавляем следующую глубину и не теряем структуру по дороге.',
+            },
+          ]
+        : [
+            {
+              title: '1. Define the smallest version worth launching',
+              description:
+                'We identify the core loop, the key constraint, and what the first release actually has to prove.',
+            },
+            {
+              title: '2. Shape product logic and technical direction',
+              description:
+                'Flows, data model, integrations, delivery order, and the decisions that matter before code starts spreading.',
+            },
+            {
+              title: '3. Build the first working version',
+              description:
+                'Hands-on implementation with attention to launchability, not presentation-only artifacts or premature scale theatre.',
+            },
+            {
+              title: '4. Tighten, launch, and extend',
+              description:
+                'After release we fix weak spots, add the next layer, and keep the product moving without losing structure.',
+            },
+          ],
+    trustTitle: locale === 'ru' ? 'Выборочные контексты' : 'Selected contexts',
+    trustLead:
+      locale === 'ru'
+        ? 'Опыт в fintech, industrial, education и founder-led среде. Это полезный сигнал доверия, но главный аргумент — запущенные продукты.'
+        : 'Work across fintech, industrial, education, and founder-led product environments. Useful as a signal, but shipped work matters more than logos.',
+    trustGroups:
+      locale === 'ru'
+        ? [
+            {
+              title: 'Компании',
+              organizations: [
+                { id: 'lukoil', label: 'ЛУКОЙЛ', style: 'wide' },
+                { id: 'sber', label: 'Сбер', style: 'wide' },
+                { id: 'moex', label: 'Московская биржа', style: 'compact' },
+                { id: 'rosatom', label: 'Росатом', style: 'wide' },
+                { id: 'tbank', label: 'Т-Банк', style: 'wide' },
+                { id: 'sintez', label: 'Синтез', style: 'wide' },
+                { id: 'sgh', label: 'Строй Гео Холдинг', style: 'compact' },
+                { id: 'vst', label: 'Вологда Смарт Терминал', style: 'compact' },
+              ],
+            },
+            {
+              title: 'Вузы и образование',
+              organizations: [
+                { id: 'bauman', label: 'МГТУ им. Баумана', style: 'compact' },
+                { id: 'plekhanov', label: 'РЭУ им. Г. В. Плеханова', style: 'compact' },
+                { id: 'gubkin', label: 'РГУ нефти и газа им. И. М. Губкина', style: 'compact' },
+                { id: 'sirius', label: 'Образовательный центр «Сириус»', style: 'compact' },
+              ],
+            },
+          ]
+        : [
+            {
+              title: 'Companies',
+              organizations: [
+                { id: 'lukoil', label: 'LUKOIL', style: 'wide' },
+                { id: 'sber', label: 'Sber', style: 'wide' },
+                { id: 'moex', label: 'Moscow Exchange', style: 'compact' },
+                { id: 'rosatom', label: 'Rosatom', style: 'wide' },
+                { id: 'tbank', label: 'T-Bank', style: 'wide' },
+                { id: 'sintez', label: 'Sintez', style: 'wide' },
+                { id: 'sgh', label: 'Stroi Geo Holding', style: 'compact' },
+                { id: 'vst', label: 'Vologda Smart Terminal', style: 'compact' },
+              ],
+            },
+            {
+              title: 'Universities and Education',
+              organizations: [
+                {
+                  id: 'bauman',
+                  label: 'Bauman Moscow State Technical University',
+                  style: 'compact',
+                },
+                {
+                  id: 'plekhanov',
+                  label: 'Plekhanov Russian University of Economics',
+                  style: 'compact',
+                },
+                { id: 'gubkin', label: 'Gubkin University', style: 'compact' },
+                { id: 'sirius', label: 'Sirius Educational Center', style: 'compact' },
+              ],
+            },
+          ],
+    trustFootnote:
+      locale === 'ru'
+        ? 'Открыт и к другим founder-led контекстам вне публичного портфолио.'
+        : 'Also open to founder-led products outside the current visible portfolio.',
+    ctaEyebrow: locale === 'ru' ? 'Обсуждение' : 'Start the conversation',
+    ctaTitle:
+      locale === 'ru'
+        ? 'Если вы собираете MVP, первую версию продукта или раннюю продуктовую систему — пришлите контекст.'
+        : 'If you are shaping an MVP, first release, or early product system, send the context.',
+    ctaBody:
+      locale === 'ru'
+        ? 'Достаточно короткого сообщения: что строите, где сейчас узкое место и какой срок важен. Я быстро скажу, есть ли fit и как выглядит самый адекватный путь к запуску.'
+        : 'A short message is enough: what you are building, where you are blocked, and what timeframe matters. I will tell you quickly if I am the right fit and what the fastest sensible path looks like.',
+    ctaLinks:
+      locale === 'ru'
+        ? [
+            { label: 'Обсудить продукт', href: '/about#contact' },
+            { label: 'Смотреть работы', href: '/projects' },
+          ]
+        : [
+            { label: 'Discuss your product', href: '/about#contact' },
+            { label: 'Browse selected work', href: '/projects' },
+          ],
+  }
+}
+
 function getProjectsPage(locale: Locale): ProjectsPageContent {
   const profileName = getSiteContent(locale).profile.name
 
   return {
-    metaTitle: `${profileName} | ${locale === 'ru' ? 'Проекты' : 'Projects'}`,
+    metaTitle: `${profileName} | ${locale === 'ru' ? 'Работы' : 'Work'}`,
     metaDescription:
       locale === 'ru'
-        ? 'Разработка ПО под ключ, сопровождение и обслуживание для бизнеса.'
-        : 'Turnkey software development, support, and maintenance for business.',
-    heroEyebrow: locale === 'ru' ? 'Проекты' : 'Projects',
+        ? 'Избранные продукты, MVP и рабочие системы, которые показывают подход к ранней стадии.'
+        : 'Selected products, MVPs, and working systems that show how I approach early-stage product work.',
+    heroEyebrow: locale === 'ru' ? 'Работы' : 'Work',
     heroTitle:
       locale === 'ru'
-        ? 'Разработка ПО под ключ, сопровождение и обслуживание'
-        : 'Turnkey software development, support, and maintenance',
+        ? 'Избранные продукты, MVP и рабочие системы'
+        : 'Selected products, MVPs, and working systems',
     heroLead:
       locale === 'ru'
-        ? 'Запускаю и развиваю цифровые продукты для бизнеса: от проектирования и разработки до поддержки, доработок и стабильной эксплуатации.'
-        : 'I launch and evolve digital products for business, from planning and development to support, iteration, and reliable operation.',
+        ? 'Слой портфолио, в котором лучше всего видно скорость запуска, продуктовое мышление и работу со сложной логикой.'
+        : 'The portfolio layer that best shows launch speed, product thinking, and work with complex logic.',
     heroHighlights:
       locale === 'ru'
         ? [
-            'Полный цикл: от идеи до запуска.',
-            'Поддержка, развитие и техобслуживание после релиза.',
-            'Веб-продукты, внутренние системы, интеграции и автоматизация.',
+            'MVP и первые релизы.',
+            'Продуктовые системы и внутренние контуры.',
+            'Интеграции, бизнес-логика и техническая основа для роста.',
           ]
         : [
-            'Full cycle, from concept to launch.',
-            'Support, iteration, and maintenance after release.',
-            'Web products, internal systems, integrations, and automation.',
+            'MVPs and first releases.',
+            'Product systems and internal tooling.',
+            'Integrations, business logic, and technical bases that can grow.',
           ],
     trustTitle: locale === 'ru' ? 'Мне доверяют' : 'Trusted By',
     trustLead:
@@ -3070,12 +3814,12 @@ function getProjectsPage(locale: Locale): ProjectsPageContent {
       locale === 'ru'
         ? 'И другие проекты в корпоративной и образовательной среде.'
         : 'And other projects delivered in corporate and educational environments.',
-    featuredTitle: locale === 'ru' ? 'МОИ АКТИВНЫЕ ПРОЕКТЫ' : 'Featured Projects',
+    featuredTitle: locale === 'ru' ? 'Ключевые продукты и системы' : 'Selected Product Work',
     featuredBody:
       locale === 'ru'
-        ? ''
-        : 'The top portfolio layer: current product directions and projects that show what I work on now.',
-    featuredProjects: projects.map((project) => localizeProject(project, locale)),
+        ? 'Избранный слой портфолио: продукты и системы, которые лучше всего показывают мой способ сборки ранней версии и дальнейшего роста.'
+        : 'A tighter portfolio layer: products and systems that best show launch speed, product thinking, and technical depth.',
+    featuredProjects: getFeaturedProjects(locale),
     selectedCasesTitle: locale === 'ru' ? 'Избранные кейсы' : 'Selected Cases Preview',
     selectedCasesBody:
       locale === 'ru'
@@ -3148,180 +3892,222 @@ function getAboutPage(locale: Locale): AboutPageContent {
     metaTitle: `${profileName} | ${locale === 'ru' ? 'Обо мне' : 'About'}`,
     metaDescription:
       locale === 'ru'
-        ? 'Бэкграунд, достижения, география опыта, домены, процесс работы и контакты.'
-        : 'Background, achievements, project geography, domains, workflow, and contact details.',
-    introEyebrow: locale === 'ru' ? 'Обо мне' : 'About',
-    introTitle: locale === 'ru' ? 'Обо мне' : 'About',
+        ? 'Как я работаю с founders и небольшими командами на стадии MVP, первой версии и раннего продуктового контура.'
+        : 'How I work with founders and small teams on MVPs, first releases, and early product systems.',
+    introEyebrow: locale === 'ru' ? 'О подходе' : 'About',
+    introTitle:
+      locale === 'ru'
+        ? 'Hands-on technical partner для ранней стадии.'
+        : 'Hands-on technical partner for the early stage.',
     introBody:
       locale === 'ru'
         ? [
-            'Я занимаюсь разработкой программного обеспечения, сайтов и нестандартных решений для бизнеса.',
-            'Учусь в МГТУ им. Баумана и давно в IT.',
-            'Организую реализацию проекта, участвую в разработке и отвечаю за результат.',
+            'Обычно я подключаюсь тогда, когда фаундеру или небольшой команде нужно быстро перейти от идеи, гипотезы или полуоформленного концепта к первой рабочей версии продукта.',
+            'Это значит не только писать код, но и помочь определить границы MVP, собрать продуктовую логику, принять ключевые технические решения и довести первую версию до запуска.',
+            'Я полезен там, где нужен не просто разработчик, но и не нужен раздутый агентский процесс.',
           ]
         : [
-            'I build software, websites, and non-standard solutions for businesses.',
-            'I study at Bauman Moscow State Technical University and have been in IT for years.',
-            'I organize project delivery, participate in development, and stay accountable for the result.',
+            'I usually join when a founder or small team needs to move from idea, hypothesis, or half-shaped concept to a working first product quickly.',
+            'That means more than writing code: MVP scope, product logic, technical decisions, and getting the first version into real use.',
+            'I am useful when you need more than a developer, but less than a bloated agency process.',
           ],
-    backgroundTitle: locale === 'ru' ? 'Бэкграунд' : 'Background',
+    backgroundTitle:
+      locale === 'ru'
+        ? 'Что я даю команде на ранней стадии'
+        : 'What I bring to an early-stage team',
     backgroundBody:
       locale === 'ru'
-        ? []
-        : [],
-    achievementsTitle: locale === 'ru' ? 'Подтверждение экспертности' : 'Expertise Validation',
+        ? [
+            'Я держу фокус на продукте, а не только на реализации. Помогаю решить, что должно войти в первую версию, что можно отложить и где техническое усилие действительно влияет на результат.',
+            'Смысл не в том, чтобы просто двигаться быстро, а в том, чтобы двигаться быстро с суждением: без лишней сложности, без раннего хаоса и без фич, которые продукт ещё не заслужил.',
+            'Если задаче нужен не один человек, могу подключить небольшую релевантную команду без перехода в агентский overhead.',
+          ]
+        : [
+            'I stay close to the product, not just the implementation. I help decide what belongs in the first version, what can wait, and where technical effort actually changes the outcome.',
+            'The goal is speed with judgment: move fast, keep the scope tight, and avoid building complexity the product has not earned yet.',
+            'When the work needs more than one person, I can pull in a small relevant team without turning the process into agency overhead.',
+          ],
+    achievementsTitle: locale === 'ru' ? 'Почему со мной работают' : 'Why this works',
     achievements:
       locale === 'ru'
         ? [
             {
               text:
-                'Победитель олимпиад, включая Национальную олимпиаду по финансовому инжинирингу и «Шаг в будущее» от МГТУ им. Баумана.',
+                'Работаю на стыке MVP, product systems, AI, fintech, automation и внутренних инструментов, а не только с одиночными задачами или витринными сайтами.',
+            },
+            {
+              text:
+                'Могу быстро собрать первую версию продукта и при этом думать о технической базе, которая пригодится после запуска.',
+            },
+            {
+              text:
+                'Есть собственный product-side контекст в fintech, поэтому я понимаю путь фаундера не только со стороны подрядчика.',
+            },
+            {
+              text:
+                'Бауманка, олимпиадный и конкурсный бэкграунд добавляют rigor, но главный аргумент здесь — запущенные продукты.',
               links: [
                 {
-                  label: 'Материал Кружка',
+                  label: 'Кружок',
                   href: 'https://kruzhok.org/news/post/-portfelya-investicij',
                   external: true,
                 },
                 {
-                  label: 'Новость Лицея 1580',
+                  label: 'Лицей 1580',
                   href: 'https://lycu1580.mskobr.ru/edu-news/7597?ysclid=mnn614cyn1907828042',
                   external: true,
                 },
               ],
             },
-            {
-              text: 'Победитель и призер хакатонов.',
-              links: [
-                {
-                  label: 'Статья Seldon',
-                  href: 'https://myseldon.com/ru/news/index/295865830',
-                  external: true,
-                },
-                {
-                  label: 'Новость Школа.Москва',
-                  href: 'https://shkolamoskva.ru/news/16-zhitelej-moskvy-stali-pobeditelyami-i-prizerami-hakatona-po-iskusstvennomu-intellektu-v-severo-zapadnom-federalnom-okruge/',
-                  external: true,
-                },
-              ],
-            },
-            { text: 'Участник программы «Малый бизнес Москвы».' },
-            { text: 'Победитель в «Нефтегазовых горизонтах» от РГУ нефти и газа им. Губкина.' },
           ]
         : [
             {
               text:
-                'Winner of olympiads, including the National Financial Engineering Olympiad and Step into the Future by Bauman Moscow State Technical University.',
+                'I work across MVPs, product systems, AI, fintech, automation, and internal tools instead of treating every task as the same type of website work.',
+            },
+            {
+              text:
+                'I can move fast on the first version while still thinking about the technical base that will matter after launch.',
+            },
+            {
+              text:
+                'I also build from the product side in fintech, so I understand founder tradeoffs from inside the product, not only from the contractor side.',
+            },
+            {
+              text:
+                'Bauman, competition results, and technical background add rigor, but shipped work is still the main proof.',
               links: [
                 {
-                  label: 'Kruzhok article',
+                  label: 'Kruzhok',
                   href: 'https://kruzhok.org/news/post/-portfelya-investicij',
                   external: true,
                 },
                 {
-                  label: 'Lyceum 1580 news',
+                  label: 'Lyceum 1580',
                   href: 'https://lycu1580.mskobr.ru/edu-news/7597?ysclid=mnn614cyn1907828042',
                   external: true,
                 },
               ],
             },
-            {
-              text: 'Hackathon winner and prize recipient.',
-              links: [
-                {
-                  label: 'Seldon article',
-                  href: 'https://myseldon.com/ru/news/index/295865830',
-                  external: true,
-                },
-                {
-                  label: 'Shkola.Moskva article',
-                  href: 'https://shkolamoskva.ru/news/16-zhitelej-moskvy-stali-pobeditelyami-i-prizerami-hakatona-po-iskusstvennomu-intellektu-v-severo-zapadnom-federalnom-okruge/',
-                  external: true,
-                },
-              ],
-            },
-            { text: 'Participant in the Small Business of Moscow program.' },
-            { text: 'Winner of Oil & Gas Horizons by Gubkin Russian State University of Oil and Gas.' },
           ],
-    domainsTitle: locale === 'ru' ? 'Индустрии / Домены' : 'Industries / Domains',
+    coverageTitle: locale === 'ru' ? 'География работы' : 'Project geography',
+    coverageBody:
+      locale === 'ru'
+        ? 'Работал с командами в России и соседних рынках. Открыт к founder-led международным коллаборациям.'
+        : 'I have worked with teams across Russia and nearby markets, and I am open to founder-led international collaborations.',
+    domainsTitle: locale === 'ru' ? 'Продуктовые контексты' : 'Product contexts',
     domains:
       locale === 'ru'
         ? [
-            'финтех',
-            'логистика',
-            'цветочный ритейл',
-            'промышленность / нефтегаз',
-            'строительство',
-            'образование',
-            'недвижимость',
-            'автомобильная отрасль',
-            'юридические услуги',
-            'ювелирная отрасль',
-            'маркетплейсы',
+            'founder-led MVP',
+            'vertical SaaS',
+            'fintech',
+            'AI features',
+            'internal tools',
+            'automation',
+            'Telegram products',
+            'marketplaces',
           ]
         : [
+            'founder-led MVPs',
+            'vertical SaaS',
             'fintech',
-            'logistics',
-            'flower retail',
-            'industrial / oil & gas',
-            'construction',
-            'education',
-            'real estate',
-            'automotive',
-            'legal services',
-            'jewelry',
+            'AI features',
+            'internal tools',
+            'automation',
+            'Telegram products',
             'marketplaces',
           ],
-    workflowTitle: locale === 'ru' ? 'Как я работаю' : 'How I Work',
+    workflowTitle: locale === 'ru' ? 'Как я обычно работаю' : 'How I usually work',
     workflowSteps:
       locale === 'ru'
         ? [
-            { title: '1. Разбираем задачу и бизнес-контекст', description: 'Сначала фиксируем проблему, ограничения, цель и то, как решение должно работать в реальности.' },
-            { title: '2. Формируем решение и объем', description: 'Определяем формат, границы MVP, ключевые сценарии, команду и риски.' },
-            { title: '3. Собираем архитектуру / интерфейс / MVP', description: 'Прорабатываем продуктовую логику, техническую структуру и рабочий интерфейс.' },
-            { title: '4. Запускаем рабочую версию', description: 'Выводим систему в практическое использование, а не оставляем на уровне макета.' },
-            { title: '5. Дорабатываем и сопровождаем', description: 'После запуска добираем слабые места, развиваем продукт и поддерживаем его в работе.' },
+            {
+              title: '1. Определяем core value и границу MVP',
+              description:
+                'Сначала сужаем первую версию до того, что действительно проверяет идею и двигает продукт к запуску.',
+            },
+            {
+              title: '2. Собираем продуктовую и техническую логику',
+              description:
+                'Сценарии, сущности, интеграции, ограничения, риски и порядок реализации без лишней абстракции.',
+            },
+            {
+              title: '3. Лично собираю первую рабочую версию',
+              description:
+                'Фокус на реальном запуске и usable product, а не на презентационной картинке или преждевременной сложности.',
+            },
+            {
+              title: '4. После релиза усиливаем то, что уже заработало',
+              description:
+                'Дожимаем слабые места, наращиваем следующую глубину и не теряем управляемость продукта.',
+            },
           ]
         : [
-            { title: '1. Understand the task and business context', description: 'We clarify the problem, constraints, goal, and how the solution should work in reality.' },
-            { title: '2. Shape the solution and scope', description: 'We define the format, MVP boundary, key scenarios, team setup, and risk frame.' },
-            { title: '3. Build architecture / interface / MVP', description: 'We assemble product logic, technical structure, and a working interface.' },
-            { title: '4. Launch a working version', description: 'The goal is a usable system, not a presentation-only artifact.' },
-            { title: '5. Iterate and support', description: 'After launch, we close weak spots, extend the product, and keep it operational.' },
+            {
+              title: '1. Define the core value and the MVP boundary',
+              description:
+                'The first step is narrowing the first version down to what actually tests the idea and moves the product toward launch.',
+            },
+            {
+              title: '2. Shape product logic and technical direction',
+              description:
+                'Flows, entities, integrations, constraints, risks, and delivery sequence without unnecessary abstraction.',
+            },
+            {
+              title: '3. Build the first working version hands-on',
+              description:
+                'The focus is a usable product and a real launch, not a presentation-only artifact or premature complexity.',
+            },
+            {
+              title: '4. Strengthen what has earned the next layer',
+              description:
+                'After release we fix weak spots, extend the product, and keep it structurally manageable.',
+            },
           ],
-    teamTitle: locale === 'ru' ? 'Команда / Реализация' : 'Team / Delivery',
+    teamTitle: locale === 'ru' ? 'Формат работы' : 'Delivery model',
     teamBody:
       locale === 'ru'
         ? [
-            'Работаю как самостоятельно, так и с командой — в зависимости от масштаба задачи.',
-            'Можем закрывать дизайн, frontend, backend, Telegram, AI-интеграции и запуск под ключ.',
+            'Если продукт узкий и критична скорость, могу работать solo и закрывать первую версию без раздутой структуры.',
+            'Если нужно параллельно вести дизайн, frontend, backend, Telegram, AI или интеграции, подключаю небольшую релевантную команду под задачу.',
+            'Цель — минимально достаточный состав для запуска, а не процесс ради процесса.',
           ]
         : [
-            'I work independently or with a team depending on the size of the task.',
-            'We can cover design, frontend, backend, Telegram, AI integrations, and launch end-to-end.',
+            'If the product is narrow and speed matters most, I can work solo and carry the first version without extra structure.',
+            'If the scope needs parallel work across design, frontend, backend, Telegram, AI, or integrations, I can assemble a small relevant team around the core scope.',
+            'The goal is the smallest effective setup for launch, not process for its own sake.',
           ],
-    contactsTitle: locale === 'ru' ? 'Контакты' : 'Contacts',
-    contactsBody: '',
-    contactsPrompt: '',
+    contactsTitle: locale === 'ru' ? 'Начать можно с короткого сообщения' : 'Start with context',
+    contactsBody:
+      locale === 'ru'
+        ? 'Если вы строите MVP, первую версию продукта, внутренний инструмент или founder-led сервис, пришлите пару строк про идею, стадию и то, что должно случиться дальше.'
+        : 'If you are building an MVP, first release, internal tool, or founder-led product, send a short note with the idea, the stage, and what needs to happen next.',
+    contactsPrompt:
+      locale === 'ru'
+        ? 'Этого достаточно, чтобы быстро понять fit и следующий шаг.'
+        : 'That is enough to understand fit and the next step quickly.',
     formNameLabel: locale === 'ru' ? 'Имя / компания' : 'Name / company',
-    formNamePlaceholder: locale === 'ru' ? 'Иван / Acme Studio' : 'Ivan / Acme Studio',
+    formNamePlaceholder: locale === 'ru' ? 'Иван / Acme / founder' : 'Ivan / Acme / founder',
     formContactLabel: locale === 'ru' ? 'Контакт для ответа' : 'Reply contact',
     formContactPlaceholder:
       locale === 'ru' ? '@ivan, email@company.com, WhatsApp' : '@ivan, email@company.com, WhatsApp',
     formContextLabel: locale === 'ru' ? 'Задача и контекст' : 'Task and context',
     formContextPlaceholder:
       locale === 'ru'
-        ? 'Нужен лендинг и Telegram-бот для заявок. Есть тексты, нужен запуск под ключ.'
-        : 'Need a landing page and Telegram bot for leads. We have copy, need end-to-end launch.',
+        ? 'Нужно собрать первую версию B2B-продукта: авторизация, core workflow, кабинет и одна ключевая интеграция. Хотим MVP за 3-4 недели.'
+        : 'We need the first version of a B2B product: auth, the core workflow, a dashboard, and one key integration. We want an MVP in 3-4 weeks.',
     formTimelineLabel: locale === 'ru' ? 'Сроки / формат' : 'Timing / format',
     formTimelinePlaceholder:
-      locale === 'ru' ? 'Старт на этой неделе, MVP за 2-3 недели' : 'Start this week, MVP in 2-3 weeks',
+      locale === 'ru' ? 'Старт в ближайшие дни, MVP за 3-6 недель' : 'Starting soon, MVP in 3-6 weeks',
     formSubmitLabel: locale === 'ru' ? 'Написать' : 'Message',
-    formTelegramLabel: locale === 'ru' ? 'Мои профили в социальных сетях' : 'My social media profiles',
+    formTelegramLabel: locale === 'ru' ? 'Или написать напрямую' : 'Or reach out directly',
   }
 }
 
 export function getPortfolioContent(locale: Locale): PortfolioContent {
   return {
+    homePage: getHomePage(locale),
     projectsPage: getProjectsPage(locale),
     casesPage: getCasesPage(locale),
     aboutPage: getAboutPage(locale),

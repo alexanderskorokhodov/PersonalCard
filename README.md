@@ -215,15 +215,68 @@ ru: { ... }
 
 ## Форма связи
 
-Форма на странице "Обо мне" не отправляет данные на сервер.
+Форма на странице "Обо мне" теперь отправляет данные на endpoint `/api/contact`.
 
-Она:
+Для работы нужны переменные окружения:
 
-1. собирает сообщение;
-2. подставляет имя, контакт, контекст и сроки;
-3. открывает Telegram с готовым черновиком сообщения.
+- `TELEGRAM_BOT_TOKEN`
+- `TELEGRAM_CHAT_ID`
+- `TELEGRAM_MESSAGE_THREAD_ID` — опционально, если используется topic в группе
 
-Чтобы форма открывала ваш Telegram, измените `telegramUsername` в `src/content/site-data.ts`.
+Локально endpoint поднимается внутри `vite dev`, а для production можно использовать отдельный Node-процесс из `server-dist`.
+
+## Production: Nginx + PM2
+
+Если сайт раздаётся как статика через Nginx, а backend нужен только для формы, используйте такую схему:
+
+1. Соберите проект:
+
+```bash
+npm install
+npm run build
+```
+
+После этого появятся:
+
+- `dist/` — фронтенд;
+- `server-dist/` — маленький backend для `/api/contact`.
+
+2. На сервере создайте `.env` рядом с проектом:
+
+```bash
+TELEGRAM_BOT_TOKEN=...
+TELEGRAM_CHAT_ID=...
+TELEGRAM_MESSAGE_THREAD_ID=...
+```
+
+3. Запустите backend через `pm2`:
+
+```bash
+pm2 start ecosystem.config.cjs
+pm2 save
+```
+
+По умолчанию backend слушает `127.0.0.1:8787`.
+
+4. В Nginx оставьте статику как есть, а `/api/contact` прокиньте в Node backend:
+
+```nginx
+location /api/contact {
+    proxy_pass http://127.0.0.1:8787;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+}
+
+location / {
+    root /var/www/personalcard/dist;
+    try_files $uri $uri/ /index.html;
+}
+```
+
+Если у вас уже есть рабочий Nginx для SPA, обычно достаточно добавить только `location /api/contact`.
 
 ## Структура страниц
 

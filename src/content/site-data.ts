@@ -91,13 +91,13 @@ const siteContentByLocale: Record<Locale, SiteContent> = {
   en: {
     profile: {
       name: 'Alexander Skorokhodov',
-      role: 'Technical development. Software and automation.',
+      role: 'Early-stage technical partner.\nMVPs and product launches.',
       avatar: '/square.jpeg',
       email: '',
       telegramUsername: 'alexanderbtw',
       footerLabel: 'Alexander Skorokhodov © 2026',
       footerNote:
-        'Self-employed in Russia. Available for international client work, including Kazakhstan.',
+        'Available for founder-led products, early teams, and international collaborations.',
       footerCreditLabel: 'Built and maintained by Alexander Skorokhodov',
       footerSourceLabel: 'Source code on GitHub',
       footerSourceHref: 'https://github.com/alexanderskorokhodov/PersonalCard',
@@ -105,7 +105,7 @@ const siteContentByLocale: Record<Locale, SiteContent> = {
     aboutLinks: aboutLinksByLocale.en,
     navigation: {
       home: 'Home',
-      projects: 'Projects',
+      projects: 'Work',
       cases: 'Experience',
       about: 'About',
     },
@@ -120,20 +120,20 @@ const siteContentByLocale: Record<Locale, SiteContent> = {
       resultsTitle: 'Key facts',
       previousSlideLabel: 'Previous slide',
       nextSlideLabel: 'Next slide',
-      contactLabel: 'Contact',
+      contactLabel: 'Discuss MVP',
       scrollToTopLabel: 'Scroll to the top of the page',
     },
   },
   ru: {
     profile: {
       name: 'Александр Скороходов',
-      role: 'Техническая разработка. ПО и автоматизация.',
+      role: 'Технический партнёр ранней стадии.\nMVP и запуск продукта.',
       avatar: '/square.jpeg',
       email: '',
       telegramUsername: 'alexanderbtw',
       footerLabel: 'Александр Скороходов © 2026',
       footerNote:
-        'Самозанятый в России. Доступен для работы с международными клиентами, включая Казахстан.',
+        'Открыт к founder-led продуктам, ранним командам и международным коллаборациям.',
       footerCreditLabel: 'Built and maintained by Alexander Skorokhodov',
       footerSourceLabel: 'Source code on GitHub',
       footerSourceHref: 'https://github.com/alexanderskorokhodov/PersonalCard',
@@ -141,7 +141,7 @@ const siteContentByLocale: Record<Locale, SiteContent> = {
     aboutLinks: aboutLinksByLocale.ru,
     navigation: {
       home: 'Главная',
-      projects: 'Проекты',
+      projects: 'Работы',
       cases: 'Опыт',
       about: 'Обо мне',
     },
@@ -156,7 +156,7 @@ const siteContentByLocale: Record<Locale, SiteContent> = {
       resultsTitle: 'Ключевые факты',
       previousSlideLabel: 'Предыдущий слайд',
       nextSlideLabel: 'Следующий слайд',
-      contactLabel: 'Связаться',
+      contactLabel: 'Обсудить MVP',
       scrollToTopLabel: 'Плавно прокрутить страницу наверх',
     },
   },

@@ -83,11 +83,14 @@ export function MediaAsset({
           loading={asset.priority ? 'eager' : 'lazy'}
           onLoad={() => setLoaded(true)}
           className={cn(
-            'h-full w-full object-cover transition duration-700',
+            'h-full w-full transition duration-700',
             loaded ? 'scale-100 opacity-100' : 'scale-[1.02] opacity-0',
             roundedClassName,
           )}
-          style={{ objectPosition: asset.objectPosition }}
+          style={{
+            objectFit: asset.objectFit ?? 'cover',
+            objectPosition: asset.objectPosition,
+          }}
         />
       ) : isNear ? (
         <video
@@ -100,11 +103,14 @@ export function MediaAsset({
           preload={asset.priority ? 'auto' : 'metadata'}
           onLoadedData={() => setLoaded(true)}
           className={cn(
-            'h-full w-full object-cover transition duration-700',
+            'h-full w-full transition duration-700',
             loaded ? 'scale-100 opacity-100' : 'scale-[1.02] opacity-0',
             roundedClassName,
           )}
-          style={{ objectPosition: asset.objectPosition }}
+          style={{
+            objectFit: asset.objectFit ?? 'cover',
+            objectPosition: asset.objectPosition,
+          }}
         />
       ) : null}
     </div>
