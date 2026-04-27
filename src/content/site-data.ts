@@ -92,7 +92,7 @@ const siteContentByLocale: Record<Locale, SiteContent> = {
     profile: {
       name: 'Alexander Skorokhodov',
       role: 'Early-stage technical partner.\nMVPs and product launches.',
-      avatar: '/square.jpeg',
+      avatar: '/a.jpeg',
       email: '',
       telegramUsername: 'alexanderbtw',
       footerLabel: 'Alexander Skorokhodov © 2026',
@@ -128,7 +128,7 @@ const siteContentByLocale: Record<Locale, SiteContent> = {
     profile: {
       name: 'Александр Скороходов',
       role: 'Технический партнёр ранней стадии.\nMVP и запуск продукта.',
-      avatar: '/square.jpeg',
+      avatar: '/a.jpeg',
       email: '',
       telegramUsername: 'alexanderbtw',
       footerLabel: 'Александр Скороходов © 2026',

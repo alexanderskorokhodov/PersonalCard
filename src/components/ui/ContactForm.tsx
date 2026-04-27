@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
+import { Link } from 'react-router-dom'
 import { cn } from '@/lib/cn'
 import { useLocale } from '@/lib/locale-context'
 
@@ -43,11 +44,15 @@ export function ContactForm({
   const contextFieldRef = useRef<HTMLTextAreaElement>(null)
   const contextPlaceholderMeasureRef = useRef<HTMLDivElement>(null)
   const [form, setForm] = useState(emptyFormState)
+  const [isConsentAccepted, setIsConsentAccepted] = useState(false)
   const [contextMinHeight, setContextMinHeight] = useState<number | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [toast, setToast] = useState<ToastState | null>(null)
   const isFormComplete = Object.values(form).every((value) => value.trim().length > 0)
+  const isFormReady = isFormComplete && isConsentAccepted
   const pendingLabel = locale === 'ru' ? 'Отправляем…' : 'Sending…'
+  const consentCheckboxId = 'contact-personal-data-consent'
+  const consentDescriptionId = 'contact-personal-data-consent-description'
 
   useLayoutEffect(() => {
     const field = contextFieldRef.current
@@ -97,7 +102,7 @@ export function ContactForm({
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    if (!isFormComplete || isSubmitting) {
+    if (!isFormReady || isSubmitting) {
       return
     }
 
@@ -111,6 +116,7 @@ export function ContactForm({
         },
         body: JSON.stringify({
           ...form,
+          consentAccepted: isConsentAccepted,
           locale,
         }),
       })
@@ -129,6 +135,7 @@ export function ContactForm({
       }
 
       setForm(emptyFormState)
+      setIsConsentAccepted(false)
       setToast({
         kind: 'success',
         title: locale === 'ru' ? 'Сообщение отправлено' : 'Message sent',
@@ -211,10 +218,66 @@ export function ContactForm({
           </label>
         </div>
 
+        <div className="mt-4 flex items-start gap-3 rounded-[18px] border border-black/8 bg-white px-4 py-3 text-[13px] leading-5 text-[var(--text-muted)]">
+          <input
+            id={consentCheckboxId}
+            type="checkbox"
+            checked={isConsentAccepted}
+            onChange={(event) => setIsConsentAccepted(event.target.checked)}
+            required
+            aria-label={
+              locale === 'ru'
+                ? 'Согласие на обработку персональных данных'
+                : 'Personal data processing consent'
+            }
+            aria-describedby={consentDescriptionId}
+            className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--text-strong)]"
+          />
+          <p id={consentDescriptionId}>
+            {locale === 'ru' ? (
+              <>
+                Я согласен на{' '}
+                <Link
+                  to="/personal-data-processing"
+                  className="font-medium text-[var(--text-link)] underline-offset-4 hover:underline"
+                >
+                  обработку персональных данных
+                </Link>{' '}
+                и ознакомлен с{' '}
+                <Link
+                  to="/privacy-policy"
+                  className="font-medium text-[var(--text-link)] underline-offset-4 hover:underline"
+                >
+                  политикой конфиденциальности
+                </Link>
+                .
+              </>
+            ) : (
+              <>
+                I consent to{' '}
+                <Link
+                  to="/personal-data-processing"
+                  className="font-medium text-[var(--text-link)] underline-offset-4 hover:underline"
+                >
+                  personal data processing
+                </Link>{' '}
+                and have read the{' '}
+                <Link
+                  to="/privacy-policy"
+                  className="font-medium text-[var(--text-link)] underline-offset-4 hover:underline"
+                >
+                  privacy policy
+                </Link>
+                .
+              </>
+            )}
+          </p>
+        </div>
+
         <div className="mt-5 flex justify-end">
           <button
             type="submit"
-            disabled={!isFormComplete || isSubmitting}
+            disabled={!isFormReady || isSubmitting}
             className="rounded-full border border-black/10 bg-[var(--text-strong)] px-4 py-2 text-[13px] font-medium text-white transition duration-200 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0"
           >
             {isSubmitting ? pendingLabel : submitLabel}

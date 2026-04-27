@@ -31,7 +31,9 @@ export function ProfileShell() {
       ? 'cases'
       : location.pathname.startsWith('/projects')
         ? 'projects'
-      : location.pathname === '/about'
+      : location.pathname === '/about' ||
+          location.pathname === '/personal-data-processing' ||
+          location.pathname === '/privacy-policy'
         ? 'about'
         : 'home'
 
@@ -171,9 +173,11 @@ export function ProfileShell() {
               <h1 className="text-balance font-[var(--font-display)] text-[clamp(1.8rem,5vw,2.4rem)] font-semibold tracking-[-0.05em] text-[var(--text-strong)]">
                 {profile.name}
               </h1>
-              <div className="inline-flex items-center gap-1.5 text-[15px] leading-6 text-[var(--text-default)] sm:text-[16px]">
-                <span className="whitespace-pre-line">{profile.role}</span>
-                <SparkBadgeIcon className="h-[18px] w-[18px] shrink-0" />
+              <div className="text-[15px] leading-6 text-[var(--text-default)] sm:text-[16px]">
+                <span className="whitespace-pre-line">
+                  {profile.role}
+                  <SparkBadgeIcon className="ml-1 inline-block h-[18px] w-[18px] align-[-0.18em]" />
+                </span>
               </div>
             </div>
 

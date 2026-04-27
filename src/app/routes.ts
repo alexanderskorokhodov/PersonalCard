@@ -11,6 +11,7 @@ const homePage = lazyPage(() => import('@/pages/HomePage'))
 const projectsPage = lazyPage(() => import('@/pages/ProjectsPage'))
 const casesPage = lazyPage(() => import('@/pages/LabsPage'))
 const aboutPage = lazyPage(() => import('@/pages/AboutPage'))
+const legalPage = lazyPage(() => import('@/pages/LegalPage'))
 const projectDetailPage = lazyPage(() => import('@/pages/ProjectDetailPage'))
 const caseDetailPage = lazyPage(() => import('@/pages/CaseDetailPage'))
 
@@ -26,7 +27,12 @@ export const detailRoutes: RouteDefinition[] = [
   { path: '/experience/:slug', routeKey: 'case-detail', Component: caseDetailPage },
 ]
 
-export const appRoutes: RouteDefinition[] = [...primaryRoutes, ...detailRoutes]
+export const legalRoutes: RouteDefinition[] = [
+  { path: '/personal-data-processing', routeKey: 'personal-data-processing', Component: legalPage },
+  { path: '/privacy-policy', routeKey: 'privacy-policy', Component: legalPage },
+]
+
+export const appRoutes: RouteDefinition[] = [...primaryRoutes, ...legalRoutes, ...detailRoutes]
 
 function resolveRoute(path: string) {
   const normalizedPath = path.split('#')[0]

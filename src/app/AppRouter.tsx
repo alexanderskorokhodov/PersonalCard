@@ -7,7 +7,7 @@ import {
   useRoutes,
 } from 'react-router-dom'
 import { ProfileShell } from '@/components/layout/ProfileShell'
-import { detailRoutes, primaryRoutes } from './routes'
+import { detailRoutes, legalRoutes, primaryRoutes } from './routes'
 
 function ScrollRestoration() {
   const location = useLocation()
@@ -41,7 +41,7 @@ function RoutedView() {
   const element = useRoutes([
     {
       element: <ProfileShell />,
-      children: primaryRoutes.map(({ path, Component }) => ({
+      children: [...primaryRoutes, ...legalRoutes].map(({ path, Component }) => ({
         path,
         element: <Component />,
       })),

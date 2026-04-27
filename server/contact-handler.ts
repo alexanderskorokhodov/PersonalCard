@@ -5,6 +5,7 @@ type ContactSubmission = {
   contact: string
   context: string
   timeline: string
+  consentAccepted: boolean
   locale: ContactLocale
 }
 
@@ -55,6 +56,7 @@ function validateContactSubmission(raw: unknown) {
     contact: normalizeField(input.contact, FIELD_LIMITS.contact),
     context: normalizeField(input.context, FIELD_LIMITS.context),
     timeline: normalizeField(input.timeline, FIELD_LIMITS.timeline),
+    consentAccepted: input.consentAccepted === true,
     locale: isLocale(input.locale) ? input.locale : 'en',
   }
 
@@ -63,6 +65,17 @@ function validateContactSubmission(raw: unknown) {
       ok: false as const,
       status: 400,
       error: 'All form fields are required.',
+    }
+  }
+
+  if (!submission.consentAccepted) {
+    return {
+      ok: false as const,
+      status: 400,
+      error:
+        submission.locale === 'ru'
+          ? 'Необходимо согласие на обработку персональных данных.'
+          : 'Personal data processing consent is required.',
     }
   }
 
@@ -83,12 +96,14 @@ function buildTelegramMessage(submission: ContactSubmission) {
           contact: 'Контакт',
           context: 'Задача и контекст',
           timeline: 'Сроки / формат',
+          consent: 'Согласие на обработку ПДн',
         }
       : {
           name: 'Name / company',
           contact: 'Reply contact',
           context: 'Task and context',
           timeline: 'Timing / format',
+          consent: 'Personal data consent',
         }
 
   return [
@@ -101,6 +116,7 @@ function buildTelegramMessage(submission: ContactSubmission) {
     submission.context,
     '',
     `${labels.timeline}: ${submission.timeline}`,
+    `${labels.consent}: ${submission.consentAccepted ? 'yes' : 'no'}`,
   ].join('\n')
 }
 
